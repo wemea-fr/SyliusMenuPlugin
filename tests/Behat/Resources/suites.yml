@@ -4,7 +4,7 @@ default:
     suites:
         greeting_customer:
             contexts:
-                - acme_sylius_example.context.ui.shop.welcome
+                - wemea_sylius_menu.context.ui.shop.welcome
 
             filters:
                 tags: "@greeting_customer"

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Acme\SyliusExamplePlugin\DependencyInjection;
+namespace Wemea\SyliusMenuPlugin\DependencyInjection;
 
 use Sylius\Bundle\CoreBundle\DependencyInjection\PrependDoctrineMigrationsTrait;
 use Sylius\Bundle\ResourceBundle\DependencyInjection\Extension\AbstractResourceExtension;
@@ -35,7 +35,7 @@ final class WemeaSyliusMenuExtension extends AbstractResourceExtension implement
 
     protected function getMigrationsDirectory(): string
     {
-        return '@AcmeSyliusExamplePlugin/migrations';
+        return '@WemeaSyliusMenuPlugin/migrations';
     }
 
     protected function getNamespacesOfMigrationsExecutedBefore(): array
