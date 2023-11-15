@@ -1,0 +1,4 @@
+imports:
+  - pages/admin/menu.yml
+  - pages/admin/menu_item.yml
+  - pages/shop/shop.yml

@@ -1,0 +1,14 @@
+wemea_menu_admin_menu:
+  resource: "@WemeaSyliusMenuPlugin/config/routing/wemea_sylius_menu_admin_menu_routing.yml"
+  prefix: /admin
+
+wemea_menu_admin_menu_item:
+  resource: "@WemeaSyliusMenuPlugin/config/routing/wemea_sylius_menu_admin_menu_item_routing.yml"
+  prefix: /admin/menu/{menuId}/items
+  requirements:
+    menuId: '\d+'
+
+wemea_sylius_menu_admin_partial:
+  resource: "@WemeaSyliusMenuPlugin/config/routing/partial_admin.yml"
+  prefix: /admin/_partial
+

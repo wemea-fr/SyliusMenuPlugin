@@ -1,0 +1,4 @@
+<div class="column">
+    {% set action = configuration.vars.action|default('index') %}
+    {{ sylius_template_event('wemea_sylius_menu.admin.menu_item.' ~ action ~ '.header.content', _context) }}
+</div>

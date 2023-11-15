@@ -1,0 +1,17 @@
+services:
+
+  wemea_sylius_menu.command_menu.create:
+    class: Wemea\SyliusMenuPlugin\Command\CreateMenuCommand
+    tags:
+      - { name: 'console.command' }
+    arguments:
+      - "@wemea_sylius_menu.repository.menu"
+      - "@router"
+      - "@wemea_sylius_menu.helper.create_menu"
+
+  wemea_sylius_menu.command_menu.delete:
+    class: Wemea\SyliusMenuPlugin\Command\DeleteMenuCommand
+    tags:
+      - { name: 'console.command' }
+    arguments:
+      - "@wemea_sylius_menu.repository.menu"

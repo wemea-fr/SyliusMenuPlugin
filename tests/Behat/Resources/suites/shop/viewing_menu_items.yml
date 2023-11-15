@@ -1,0 +1,23 @@
+default:
+  suites:
+    shop_viewing_menu_items:
+      local_coverage_enabled: true
+      contexts:
+        - sylius.behat.context.hook.doctrine_orm
+
+        - sylius.behat.context.transform.shared_storage
+        - sylius.behat.context.transform.product
+        - sylius.behat.context.transform.taxon
+
+        - wemea_sylius_menu.behat.context.transform.menu_item
+
+        - sylius.behat.context.setup.channel
+        - sylius.behat.context.setup.product
+        - sylius.behat.context.setup.taxonomy
+
+        - wemea_sylius_menu.behat.context.setup.menu
+        - wemea_sylius_menu.behat.context.setup.menu_item
+
+        - wemea_sylius_menu.behat.context.ui.shop.homepage
+      filters:
+        tags: "@viewing_menu_items&&@ui"

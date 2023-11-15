@@ -1,0 +1,24 @@
+    {# Override default choice widget to put error elsewhere #}
+{# from @SyluisUiBundle/Form/theme.html.twig #}
+{% macro customChoiceWidget(form) %}
+    <div class="{% if form.vars.required %}required {% endif %}field{% if (not form.vars.compound or force_error|default(false)) and not form.vars.valid %} error{% endif %}">
+        {{- form_label(form) -}}
+        {% set attr = form.vars.attr|merge({'class': form.varsattr.class|default ~ ' ui dropdown'}) %}
+        {{- form_widget(form, {'attr': attr}) -}}
+    </div>
+{% endmacro %}
+
+{% macro menuLinkProperty(form, type_error) %}
+
+{#    Definded custom and default templates#}
+    {% set customTemplate = '@WemeaSyliusMenuPlugin/Admin/MenuLink/Form/Fields/_' ~ form.vars.name ~ '.html.twig' %}
+    {% set defaultTemplate = '@WemeaSyliusMenuPlugin/Admin/MenuLink/Form/Fields/_default.html.twig' %}
+
+
+    <div data-link-type="{{ form.vars.name }}"
+         class="field {% if (type_error.is_error) and (type_error.property is same as(form.vars.name)) %} error {% endif %}"
+    >
+{#        Load custom template. If not exist load default template#}
+        {% include [ customTemplate, defaultTemplate ] with { 'form': form} %}
+    </div>
+{% endmacro %}

@@ -1,0 +1,8 @@
+Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslation:
+  properties:
+    customLink:
+      - Regex:
+          #Pattern match with string sarting with : "http://" , "https://" or "/"
+          pattern: '/^(http(s)?:\/\/|\/)/'
+          groups: [ 'wemea_sylius_menu' ]
+          message: wemea_sylius_menu.form.menu_link_translation.custom_link.regex

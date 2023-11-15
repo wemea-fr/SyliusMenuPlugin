@@ -1,0 +1,14 @@
+services:
+
+  _defaults: { public: true }
+
+  wemea_sylius_menu.behat.context.transform.menu_item:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Context\Transform\MenuItemContext
+    arguments:
+      - "@wemea_sylius_menu.manager.menu_item"
+      - "%wemea_sylius_menu.model.menu_item.class%"
+
+  wemea_sylius_menu.behat.context.transform.menu:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Context\Transform\MenuContext
+    arguments:
+      - "@wemea_sylius_menu.repository.menu"

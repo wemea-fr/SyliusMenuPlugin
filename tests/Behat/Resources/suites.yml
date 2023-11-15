@@ -1,0 +1,11 @@
+imports:
+    - suites/admin/menu/accessing_to_menus_page.yml
+    - suites/admin/menu/editing_menu.yml
+    - suites/admin/menu_item/accessing_to_menu_items.yml
+    - suites/admin/menu_item/managing_menu_item.yml
+
+    - suites/shop/viewing_menu.yml
+    - suites/shop/viewing_menu_items.yml
+    - suites/shop/using_menu_items.yml
+
+    - suites/cli/menu_commands.yml

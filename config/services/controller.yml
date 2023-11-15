@@ -1,0 +1,11 @@
+services:
+
+  _defaults: { public: true }
+
+  wemea_sylius_menu.controller.render_menu:
+    class: Wemea\SyliusMenuPlugin\Controller\RenderMenuController
+    arguments:
+      - '@twig'
+      - '@wemea_sylius_menu.repository.menu'
+      - '@sylius.context.shopper'
+      - '@security.authorization_checker'

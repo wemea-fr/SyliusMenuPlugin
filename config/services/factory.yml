@@ -1,0 +1,21 @@
+services:
+
+  _defaults: { public: true }
+
+  wemea_sylius_menu.factory.custom_factory.menu:
+    class: Wemea\SyliusMenuPlugin\Factory\MenuFactory
+    decorates: wemea_sylius_menu.factory.menu
+    arguments:
+      - "@wemea_sylius_menu.factory.custom_factory.menu.inner"
+
+  wemea_sylius_menu.factory.custom_factory.menu_item:
+    class: Wemea\SyliusMenuPlugin\Factory\MenuItemFactory
+    decorates: wemea_sylius_menu.factory.menu_item
+    arguments:
+      - "@wemea_sylius_menu.factory.custom_factory.menu_item.inner"
+
+  wemea_sylius_menu.factory.custom_factory.menu_link:
+    class: Wemea\SyliusMenuPlugin\Factory\MenuLinkFactory
+    decorates: wemea_sylius_menu.factory.menu_link
+    arguments:
+      - "@wemea_sylius_menu.factory.custom_factory.menu_link.inner"

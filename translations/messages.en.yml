@@ -1,0 +1,43 @@
+wemea_sylius_menu:
+  ui:
+    content_management: Content management
+    menu: Menu
+    menus: Menus
+    menus_management: Menus management
+    visibility: Visibility
+    channels: Channels
+
+    target: Link's target
+    menu_items: menu's items
+    link_type: Link's type
+    css_classes: CSS classes
+    manage_items: Manage items
+    list_item: List items
+    create_item: Create item
+    new_menu_item: New menu's item
+    edit_menu: Edit menu
+    edit_menu_item: Edit item
+    item_icon: Link's icon
+    no_image: none
+
+    visibility_label:
+      public: Public
+      private: Private
+
+    target_label:
+      _blank: New tab
+      _self: Page
+
+    link_type_label:
+      translations: Custom link
+      custom: Custom link
+      product: Link to product
+      taxon: Link to taxonomy
+
+  form:
+    menu_link:
+      label:
+        custom: URL
+        product: Target product
+        taxon: Target taxon
+

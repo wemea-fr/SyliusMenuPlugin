@@ -1,0 +1,11 @@
+imports:
+  - services/command.yml
+  - services/controller.yml
+  - services/factory.yml
+  - services/fixture.yml
+  - services/form.yml
+  - services/helper.yml
+  - services/listener.yml
+  - services/menu.yml
+  - services/twig.yml
+  - services/validator.yml

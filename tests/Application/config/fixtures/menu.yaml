@@ -1,0 +1,3 @@
+imports:
+    - ./defaults_menus/homepage_footer_menu.yaml
+    - ./defaults_menus/footer_help_menu.yaml

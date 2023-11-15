@@ -1,0 +1,7 @@
+imports:
+  - { resource: "services/contexts.yml" }
+  - { resource: "services/pages.yml" }
+  - { resource: "services/helper.yml" }
+
+parameters:
+  locale: en_US

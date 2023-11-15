@@ -1,0 +1,6 @@
+Wemea\SyliusMenuPlugin\Entity\MenuItemTranslation:
+  properties:
+    title:
+      - NotBlank:
+          groups: [ 'wemea_sylius_menu' ]
+          message: wemea_sylius_menu.form.menu.title.not_blank

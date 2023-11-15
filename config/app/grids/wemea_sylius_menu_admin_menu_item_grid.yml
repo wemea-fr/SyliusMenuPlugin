@@ -1,0 +1,69 @@
+sylius_grid:
+  grids:
+    wemea_sylius_menu_admin_menu_item:
+      driver:
+        name: doctrine/orm
+        options:
+          class: "%wemea_sylius_menu.model.menu_item.class%"
+          repository:
+            method: createQueryBuilderByMenuId
+            arguments: [ $menuId ]
+
+      fields:
+        title:
+          type: string
+          label: sylius.ui.title
+
+        image:
+          type: twig
+          label: wemea_sylius_menu.ui.item_icon
+          options:
+            template: "@WemeaSyliusMenuPlugin/Admin/MenuItem/Grid/Field/_image.html.twig"
+
+        target:
+          type: twig
+          label: wemea_sylius_menu.ui.target
+          options:
+            template: "@WemeaSyliusMenuPlugin/Admin/MenuItem/Grid/Field/_target.html.twig"
+
+        priority:
+          type: string
+          label: sylius.ui.priority
+
+        link.getType:
+          type: string
+          label: wemea_sylius_menu.ui.link_type
+
+        cssClasses:
+          type: string
+          label: wemea_sylius_menu.ui.css_classes
+        #          TODO add path ?
+
+      actions:
+        main:
+          create:
+            type: create
+            options:
+              link:
+                parameters:
+                  menuId: $menuId
+
+        item:
+          update:
+            type: update
+            label: sylius.ui.edit
+            options:
+              link:
+                parameters:
+                  id: resource.id
+                  menuId: $menuId
+          delete:
+            type: delete
+            options:
+              link:
+                parameters:
+                  id: resource.id
+                  menuId: $menuId
+
+
+

@@ -1,9 +1,2 @@
-wemea_sylius_menu_shop:
-    resource: "@WemeaSyliusMenuPlugin/config/shop_routing.yml"
-    prefix: /{_locale}
-    requirements:
-        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
-
-wemea_sylius_menu_admin:
-    resource: "@WemeaSyliusMenuPlugin/config/admin_routing.yml"
-    prefix: /admin
+wemea_sylius_menu_routing:
+    resource: "@WemeaSyliusMenuPlugin/config/routing.yml"

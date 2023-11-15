@@ -1,0 +1,16 @@
+services:
+  _defaults: { public: true }
+
+  wemea_sylius_menu.behat.context.cli.delete_menu_command:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Context\Cli\DeleteCommandContext
+    arguments:
+      - "@wemea_sylius_menu.repository.menu"
+      - "@kernel"
+
+  wemea_sylius_menu.behat.context.cli.create_menu_command:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Context\Cli\CreateMenuCommandContext
+    arguments:
+      - "@wemea_sylius_menu.repository.menu"
+      - "@router"
+      - "@wemea_sylius_menu.helper.create_menu"
+      - "@kernel"

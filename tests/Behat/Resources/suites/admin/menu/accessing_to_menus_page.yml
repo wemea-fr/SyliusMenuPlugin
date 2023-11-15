@@ -1,0 +1,21 @@
+default:
+  suites:
+    admin_accessing_to_menu_page:
+      local_coverage_enabled: true
+      contexts:
+        - sylius.behat.context.hook.doctrine_orm
+
+        - sylius.behat.context.transform.shared_storage
+
+        - sylius.behat.context.setup.admin_security
+        - sylius.behat.context.setup.channel
+        - sylius.behat.context.setup.locale
+
+        - wemea_sylius_menu.behat.context.setup.menu
+        - wemea_sylius_menu.behat.context.setup.menu_item
+
+        - wemea_sylius_menu.behat.context.ui.admin.menu
+        - wemea_sylius_menu.behat.context.ui.admin.menu_item
+
+      filters:
+        tags: "@accessing_to_menus_page&&@ui"

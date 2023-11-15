@@ -1,122 +1,264 @@
 <p align="center">
-    <a href="https://sylius.com" target="_blank">
-        <img src="https://demo.sylius.com/assets/shop/img/logo.png" />
+    <a href="https://www.wemea.fr" target="_blank">
+        <img src="doc/logo.png"/>
     </a>
 </p>
+<h1 align="center">Sylius Menu Plugin</h1>
 
-<h1 align="center">Plugin Skeleton</h1>
+<p align="center">Plugin allow to manage Shop menus from the Back Office</p>
 
-<p align="center">Skeleton for starting Sylius plugins.</p>
+## Features:
 
-## Documentation
+- Create/Delete menu with commands :
+    - `wemea:menu:create <code>`
+    - `wemea:menu:delete <code>`
+- Manage visibility of menus
+- Manage menu item (link, title, description, order/priority, icon)
+- Default link types :
+    - Custom: put any link inside
+    - Product: choose link to a product and path is generated dynamically
+    - Taxon: choose link to a taxononmy and path is generated dynamically
 
-For a comprehensive guide on Sylius Plugins development please go to Sylius documentation,
-there you will find the <a href="https://docs.sylius.com/en/latest/plugin-development-guide/index.html">Plugin Development Guide</a>, that is full of examples.
+![Menu render in Shop page](doc/sample_footer_menus.png)
 
-## Quickstart Installation
+![Administration of menus](doc/admin_menus.png)
 
-### Traditional
+![Administration of menu](doc/admin_menu_edit.png)
 
-1. Run `composer create-project sylius/plugin-skeleton ProjectName`.
+![Administration of menu items](doc/admin_menu_items.png)
 
-2. From the plugin skeleton root directory, run the following commands:
+![Administration of menu item](doc/admin_menu_item_create.png)
+
+## Summary
+
+1. [Installation](#installation)
+2. [Usage](#usage)
+    1. [Add new menu](#add-a-menu)
+    2. [Change default route mapping](#change-default-resource-route-mapping)
+    3. [Add Custom resource link](#add-new-link-type-to-another-resource)
+3. [Use menu fixtures](#use-menu-fixtures)
+4. [Plugin testing](#plugin-testing)
+
+## Installation
+
+1. Require plugin with composer:
 
     ```bash
-    $ (cd tests/Application && yarn install)
-    $ (cd tests/Application && yarn build)
-    $ (cd tests/Application && APP_ENV=test bin/console assets:install public)
-    
-    $ (cd tests/Application && APP_ENV=test bin/console doctrine:database:create)
-    $ (cd tests/Application && APP_ENV=test bin/console doctrine:schema:create)
+    composer require wemea/sylius-menu-plugin
     ```
 
-To be able to set up a plugin's database, remember to configure you database credentials in `tests/Application/.env` and `tests/Application/.env.test`.
+2. Add followings to your `config/bundles.php` if not already automatically added:
 
-### Docker
+    ```php
+    Wemea\SyliusMenuPlugin\WemeaSyliusMenuPlugin::class => ['all' => true],
+    ```
 
-1. Execute `docker compose up -d`
+3. Import config in your `config/packages/_sylius.yaml`:
 
-2. Initialize plugin `docker compose exec app make init`
+   ```yaml
+   imports:
+       [...]
+       - { resource: "@WemeaSyliusMenuPlugin/Resources/config/app/config.yml" }
+   ```
 
-3. See your browser `open localhost`
+4. Import routes in your `config/routes.yml`:
+
+   ```yaml
+    wemea_menu_routing:
+      resource: "@WemeaSyliusMenuPlugin/Resources/config/routing.yml"
+   ```
+
+5. Add menus into your template. Check [Usage - Add a menu](#add-a-menu) for more information
+
+6. Run [integration test](#running-plugin-integration-tests-only).
+
+   :warning: There are integration tests only for admin part. **You should** add your owned tests for shop part.
+
 
 ## Usage
 
-### Running plugin tests
+### Add a menu
 
-  - PHPUnit
+*Tips* :
+> Menus can only be created and removed with Symfony command to avoid shop admin removed accidentally a menu and block the UI. Menus can be disabled on the BO.
 
-    ```bash
-    vendor/bin/phpunit
+1. Create new menu
+
+   Run `bin/console wemea:menu:create <your_menu_code>`
+
+   You can run `bin/console wemea:menu:create --help` to view available options
+
+2. Add this menu in your template: add this where you want to introduce menu to your page(s)
+    ```twig
+        {{ render(controller('wemea_sylius_menu.controller.render_menu::renderAction', {
+               'code': '<your_menu_code>'
+        })) }}
+    ```
+   By default, the menu use `@WemeaSyliusMenuPlugin/Shop/Menu/_default.html.twig`. If you want to use your own template, add tempalte option on render :
+
+   ```twig
+           {{ render(controller('wemea_sylius_menu.controller.render_menu::renderAction', {
+                  'code': '<your_menu_code>',
+                   'template': '@App/your/menu/template.html.twig'
+           })) }}
+   ```
+3. Add behat test to check menu integration
+
+   You can view full integration on [this file](./tests/Application/templates/bundles/SyliusShopBundle/Layout/Footer/Grid/_your_store.html.twig) and test on [this folder](features/shop)
+
+### Change default resource route mapping
+
+If you change defaults routes of application, you need to change route mapping of link resources. You can do it on `config/packages/wemea_sylius_menu.yml` with this configuration :
+
+```yaml
+## Default configuration
+wemea_sylius_menu:
+  resource_path_resolver_configuration:
+
+    custom:
+      # route is null for custom type because is not use the router resolver 
+      route: null 
+      parameters: []
+
+    product:
+      route: 'sylius_shop_product_show'
+      parameters:
+        slug: 'getSlug'
+    
+    taxon:
+      route: 'sylius_shop_product_index'
+      parameters:
+        slug: 'getSlug'
+```
+
+Parameters node is an associative array between route parameter and the method name to access at the resource property
+
+### Add new link type to another resource
+
+This plugin allows creating new resource link. You may need it to redirect on custom resource (like brand, we use this example for instruction example)
+
+1. Override the default MenuLink entity:
+    ```php
+    <?php
+    
+    declare(strict_types=1);
+    
+    namespace App\Entity;
+    use Doctrine\ORM\Mapping as ORM;
+    use Wemea\SyliusMenuPlugin\Entity\MenuLink as BaseMenuLink;
+
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="wemea_menu_link")
+     */
+    class MenuLink extends BaseMenuLink
+    {
+        //Add your new property
+        /** 
+         * @var Brand|null $brand 
+         * @ORM\ManyToOne(targetEntity="Brand")
+         * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
+         */
+        protected $brand;
+    
+        //add this property name to know properties
+        public static function getLinkProperties() : array{
+            return array_merge(
+                parent::getLinkProperties(),
+                ['brand'] // your property name
+            ); 
+        }
+    }
+    ```
+2. Declare this entity as resource model into `config/packages/_sylius.yml`
+    ```yaml
+    sylius_resource:
+      resources:
+         wemea_sylius_menu.menu_link:
+              classes:
+                model: App\Entity\MenuLink
     ```
 
-  - PHPSpec
+3. Add form extension for `Wemea\SyliusMenuPlugin\Form\Type\MenuLinkType` with (autocomplete ?) choice type. Check [official documentation](https://symfony.com/doc/current/form/create_form_type_extension.html) create form extension.
 
-    ```bash
-    vendor/bin/phpspec run
+   This field should **NOT** be mapped
+    ```php
+           $builder
+               ->add('brand', BrandAutocompleteChoiceType::class, [
+                           'mapped' => false,
+               ]);
     ```
+   This new field is automatically add to template. By default, it uses : `{{ form_row(form.brand) }}`.
 
-  - Behat (non-JS scenarios)
+   If you want use a custom template, you can create `templates/bundles/WemeaSyliusMenuPlugin/Admin/MenuLink/Form/Fields/_<field_name>.html.twig` and use field with the property `form`.
 
-    ```bash
-    vendor/bin/behat --strict --tags="~@javascript"
+4. Add routing configuration on `config/packages/wemea_sylius_menu.yml`
+    ```yaml
+    wemea_sylius_menu:
+      resource_path_resolver_configuration:
+         # Use property name as key
+         brand:
+          route: 'app_shop_brand_show' 
+          parameters: [
+           'code' => 'getCode'
+           ]
     ```
+5. Clear cache and make migration to update schema
 
-  - Behat (JS scenarios)
- 
-    1. [Install Symfony CLI command](https://symfony.com/download).
- 
-    2. Start Headless Chrome:
-    
-      ```bash
-      google-chrome-stable --enable-automation --disable-background-networking --no-default-browser-check --no-first-run --disable-popup-blocking --disable-default-apps --allow-insecure-localhost --disable-translate --disable-extensions --no-sandbox --enable-features=Metal --headless --remote-debugging-port=9222 --window-size=2880,1800 --proxy-server='direct://' --proxy-bypass-list='*' http://127.0.0.1
-      ```
-    
-    3. Install SSL certificates (only once needed) and run test application's webserver on `127.0.0.1:8080`:
-    
-      ```bash
-      symfony server:ca:install
-      APP_ENV=test symfony server:start --port=8080 --dir=tests/Application/public --daemon
-      ```
-    
-    4. Run Behat:
-    
-      ```bash
-      vendor/bin/behat --strict --tags="@javascript"
-      ```
-    
-  - Static Analysis
-  
-    - Psalm
-    
-      ```bash
-      vendor/bin/psalm
-      ```
-      
-    - PHPStan
-    
-      ```bash
-      vendor/bin/phpstan analyse -c phpstan.neon -l max src/  
-      ```
+## Use menu fixtures
 
-  - Coding Standard
-  
-    ```bash
-    vendor/bin/ecs check
-    ```
+If you need to load menu programmatically, you can use menu fixture like it :
+```yaml
+sylius_fixtures:
+  suites:
 
-### Opening Sylius with your plugin
+    <suite_name>:
+      fixtures:
 
-- Using `test` environment:
+        menu:
+          name: menu
+          options:
+            custom:
 
-    ```bash
-    (cd tests/Application && APP_ENV=test bin/console sylius:fixtures:load)
-    (cd tests/Application && APP_ENV=test bin/console server:run -d public)
-    ```
-    
-- Using `dev` environment:
+              -   code: <menu_code>
+                  visibility: public  # use private or public value (is public by default)
+                  enabled: true       # menu is enabled by default
+                  
+                  #Transltion accept associative array of [locale => [title => <expected title> ]] 
+                  translations:
+                    en_US:
+                      title: The title
+                  
+                  #channels is array of channels code
+                  channels: ['FASHION_WEB']
+                  
+                  #Define items of menu
+                  items:
+                    - target: _self # target accept _self or _blank. By default is _self
+                      
+                      #Transaltions is defined like menu translation with 'description' optional node
+                      translations: 
+                        en_US:
+                          title: <title>
+                          description: <description>
+          
+                      # link node allow to defined the target resource of menu item 
+                      link:
+              
+                        # for a custom link, use associative array of locale => path
+                        custom_link:
+                          en_US: /the/expected/path
+                        
+                        # for a product link use the code of target product
+                        product_code: <product_code>
+                        
+                        # for a taxon link use the code of target product
+                        taxon_code: <taxon_code>
+```
+To see a full implementation example, you can check the file [footer_help_menu.yaml](./tests/Application/config/fixtures/defaults_menus/footer_help_menu.yaml).
 
-    ```bash
-    (cd tests/Application && APP_ENV=dev bin/console sylius:fixtures:load)
-    (cd tests/Application && APP_ENV=dev bin/console server:run -d public)
-    ```
+## Issues / Remaining work
+
+* Add fixtures for Menu item images
+* Add possibility to add an anchor as custom link
+* Manage resolve path according current locale for custom links in the case where store use localized URL

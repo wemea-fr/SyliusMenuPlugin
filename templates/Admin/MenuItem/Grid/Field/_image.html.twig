@@ -1,0 +1,6 @@
+{% import '@SyliusUi/Macro/labels.html.twig' as label %}
+{% if data is null %}
+    {{ label.default('wemea_sylius_menu.ui.no_image')}}
+{% else %}
+    <img src="{{ data.path|imagine_filter('sylius_admin_admin_user_avatar_thumbnail') }}" alt="item icon"/>
+{% endif %}

@@ -1,0 +1,16 @@
+Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslation:
+  type: mappedSuperclass
+  table: wemea_menu_link_translation
+
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+
+  fields:
+    customLink:
+      type: string
+      nullable: true
+      column: custom_link

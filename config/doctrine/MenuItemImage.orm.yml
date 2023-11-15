@@ -1,0 +1,17 @@
+Wemea\SyliusMenuPlugin\Entity\MenuItemImage:
+  type: mappedSuperclass
+  table: wemea_menu_item_image
+
+  oneToOne:
+    owner:
+      targetEntity: Wemea\SyliusMenuPlugin\Entity\MenuItem
+      inversedBy: image
+      joinColumn:
+        owner_id:
+          referencedColumnName: id
+          nullable: false
+          on-delete: CASCADE
+
+
+
+

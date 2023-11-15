@@ -1,0 +1,35 @@
+services:
+
+  _defaults: { public: true }
+
+  wemea_sylius_menu.behat.context.ui.admin.menu:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Context\Ui\Admin\MenuContext
+    arguments:
+      - "@wemea_sylius_menu.behat.page.admin.menu_index"
+      - "@wemea_sylius_menu.behat.page.admin.menu_update"
+      - "@sylius.locale_converter"
+
+  wemea_sylius_menu.behat.context.ui.admin.menu_item:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Context\Ui\Admin\MenuItemContext
+    arguments:
+      - "@wemea_sylius_menu.behat.page.admin.menu_item_index"
+      - "@wemea_sylius_menu.behat.page.admin.menu_item_create"
+      - "@wemea_sylius_menu.behat.page.admin.menu_item_update"
+      - "@sylius.behat.shared_storage"
+      - "@sylius.locale_converter"
+      - "@sylius.behat.current_page_resolver"
+      - "@wemea_sylius_menu.behat.helper.image_matcher"
+      - "@wemea_sylius_menu.manager.menu_item"
+      - "%wemea_sylius_menu.model.menu_item.class%"
+
+
+  wemea_sylius_menu.behat.context.ui.shop.homepage:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Context\Ui\Shop\HomepageContext
+    arguments:
+      - "@wemea_sylius_menu.behat.page.shop.homepage"
+      - "@wemea_sylius_menu.behat.helper.image_matcher"
+
+  wemea_sylius_menu.behat.context.ui.shop.taxon:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Context\Ui\Shop\TaxonContext
+    arguments:
+      - "@sylius.behat.page.shop.product.index"

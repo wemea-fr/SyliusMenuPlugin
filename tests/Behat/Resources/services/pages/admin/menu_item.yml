@@ -1,0 +1,23 @@
+services:
+
+  wemea_sylius_menu.behat.page.admin.menu_item_index:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Page\Admin\MenuItem\IndexPage
+    parent: sylius.behat.page.admin.crud.index
+    public: false
+    arguments:
+      - 'wemea_sylius_menu_admin_menu_item_index'
+
+  wemea_sylius_menu.behat.page.admin.menu_item_create:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Page\Admin\MenuItem\CreatePage
+    parent: sylius.behat.page.admin.crud.create
+    public: false
+    arguments:
+      - 'wemea_sylius_menu_admin_menu_item_create'
+
+  wemea_sylius_menu.behat.page.admin.menu_item_update:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Page\Admin\MenuItem\UpdatePage
+    parent: sylius.behat.page.admin.crud.update
+    public: false
+    arguments:
+      - 'wemea_sylius_menu_admin_menu_item_update'
+

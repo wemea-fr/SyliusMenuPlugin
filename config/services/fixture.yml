@@ -1,0 +1,21 @@
+services:
+
+  wemea_sylius_menu.fixture.menu:
+    class: Wemea\SyliusMenuPlugin\Fixture\MenuFixture
+    arguments:
+      - "@wemea_sylius_menu.manager.menu"
+      - "@wemea_sylius_menu.fixture.example_factory.menu"
+      - "%locale%"
+    tags:
+      - { name: sylius_fixtures.fixture }
+
+  wemea_sylius_menu.fixture.example_factory.menu:
+    class:  Wemea\SyliusMenuPlugin\Fixture\Factory\MenuExampleFactory
+    arguments:
+      - "@wemea_sylius_menu.factory.menu"
+      - "@wemea_sylius_menu.factory.menu_item"
+      - "@wemea_sylius_menu.factory.menu_link"
+      - "@sylius.repository.channel"
+      - "@sylius.repository.product"
+      - "@sylius.repository.taxon"
+

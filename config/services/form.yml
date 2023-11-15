@@ -1,0 +1,64 @@
+services:
+
+  _defaults: { public: true }
+
+  wemea_sylius_menu.form.type.menu:
+    class: Wemea\SyliusMenuPlugin\Form\Type\MenuType
+    arguments:
+      - "%wemea_sylius_menu.model.menu.class%"
+      - [ 'wemea_sylius_menu' ]
+    tags:
+      - { name: form.type }
+
+  wemea_sylius_menu.form.type.menu_translation:
+    class: Wemea\SyliusMenuPlugin\Form\Type\MenuTranslationType
+    arguments:
+      - "%wemea_sylius_menu.model.menu_translation.class%"
+      - [ 'wemea_sylius_menu' ]
+    tags:
+      - { name: form.type }
+
+  wemea_sylius_menu.form.type.menu_item:
+    class: Wemea\SyliusMenuPlugin\Form\Type\MenuItemType
+    arguments:
+      - "%wemea_sylius_menu.model.menu_item.class%"
+      - "%wemea_sylius_menu.model.menu_link.class%"
+      - "@wemea_sylius_menu.factory.menu_link"
+      - [ 'wemea_sylius_menu' ]
+    tags:
+      - { name: form.type }
+
+  wemea_sylius_menu.form.type.menu_item_transaltion:
+    class: Wemea\SyliusMenuPlugin\Form\Type\MenuItemTranslationType
+    arguments:
+      - "%wemea_sylius_menu.model.menu_item_translation.class%"
+      - [ 'wemea_sylius_menu' ]
+    tags:
+      - { name: form.type }
+
+  wemea_sylius_menu.form.type.menu_item_image:
+    class: Wemea\SyliusMenuPlugin\Form\Type\MenuItemImageType
+    arguments:
+      - "@sylius.image_uploader"
+      - "@wemea_sylius_menu.repository.menu_item_image"
+      - "%wemea_sylius_menu.model.menu_item_image.class%"
+      - [ 'wemea_sylius_menu' ]
+    tags:
+      - { name: form.type }
+
+
+  wemea_sylius_menu.form.type.menu_link:
+    class: Wemea\SyliusMenuPlugin\Form\Type\MenuLinkType
+    arguments:
+      - "%wemea_sylius_menu.model.menu_link.class%"
+      - [ 'wemea_sylius_menu' ]
+    tags:
+      - { name: form.type }
+
+  wemea_sylius_menu.form.type.menu_custom_link_translation:
+    class: Wemea\SyliusMenuPlugin\Form\Type\MenuCustomLinkTranslationType
+    arguments:
+      - "%wemea_sylius_menu.model.menu_link_translation.class%"
+      - [ 'wemea_sylius_menu' ]
+    tags:
+      - { name: form.type }

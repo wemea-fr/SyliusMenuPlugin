@@ -1,0 +1,9 @@
+wemea_sylius_menu_admin_partial_menu_show:
+  path: /{id}
+  methods: [GET]
+  defaults:
+    _controller: wemea_sylius_menu.controller.menu::showAction
+    _sylius:
+      template: $template
+      vars: $vars
+      permission: true

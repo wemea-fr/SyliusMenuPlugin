@@ -1,36 +1,95 @@
-phpunit:
-	vendor/bin/phpunit
+.DEFAULT_GOAL := help
 
-phpspec:
-	vendor/bin/phpspec run --ansi --no-interaction -f dot
+# Create method except for behat rule to avoid parsing next rules of queue
+parse_cmd_args = $(filter-out $@,$(MAKECMDGOALS))
 
-phpstan:
-	vendor/bin/phpstan analyse
+##
+## Docker usage - from host machine
+##-----------------------------------------------------------------
+.PHONY: start stop
 
-psalm:
-	vendor/bin/psalm
+recreate: ## Recreate containers
+	docker-compose up -d --force-recreate --remove-orphans
 
-behat-js:
-	APP_ENV=test vendor/bin/behat --colors --strict --no-interaction -vvv -f progress
+clean: ## Remove containers
+	docker-compose down -v
 
-install:
+start: ## Start containers
+	docker-compose up -d
+
+stop: ## Start containers
+	docker-compose kill
+
+connect: ## Connect to app container to run command manually
+	docker-compose exec app sh
+
+##
+## Install
+##-----------------------------------------------------------------
+.PHONY: install backend frontend
+
+init: install backend frontend ## Install app
+
+install: ## Install dependencies
 	composer install --no-interaction --no-scripts
 
-backend:
+backend: ## Prepare Backend
 	tests/Application/bin/console sylius:install --no-interaction
-	tests/Application/bin/console sylius:fixtures:load default --no-interaction
+	tests/Application/bin/console doctrine:database:create --if-not-exists -vvv
+	tests/Application/bin/console doctrine:schema:update --complete --force --no-interaction -vvv
+	tests/Application/bin/console doctrine:database:create --env=test --if-not-exists -vvv
+	tests/Application/bin/console doctrine:schema:update --env=test --complete --force --no-interaction -vvv
+	tests/Application/bin/console sylius:fixtures:load --no-interaction
+	chmod -Rf 777 tests/Application/public
 
-frontend:
+frontend: ## Prepare Frontend
+	tests/Application/bin/console assets:install tests/Application/public
 	(cd tests/Application && yarn install --pure-lockfile)
 	(cd tests/Application && GULP_ENV=prod yarn build)
 
-behat:
-	APP_ENV=test vendor/bin/behat --colors --strict --no-interaction -vvv -f progress
+##
+## Tests
+##-----------------------------------------------------------------
+.PHONY: phpspec phpunit behat
 
-init: install backend frontend
+phpunit: ## Run unit tests
+	vendor/bin/phpunit --colors=always $(call parse_cmd_args)
+
+phpspec: ## Run phpspec tests
+	vendor/bin/phpspec run --ansi --no-interaction -f progress $(call parse_cmd_args)
+
+behat: ## Run functional tests
+	APP_ENV=test vendor/bin/behat --colors --strict --no-interaction -vvv -f progress $(call parse_cmd_args)
+
+behat-js: ## Run only functional tests with Javascript support
+	APP_ENV=test vendor/bin/behat --colors --strict --no-interaction -vvv -f progress --tags=@javascript $(call parse_cmd_args)
+
+behat-no-js: ## Run only functional tests without Javascript support
+	APP_ENV=test vendor/bin/behat --colors --strict --no-interaction -vvv -f progress --tags=~@javascript $(call parse_cmd_args)
 
 ci: init phpstan psalm phpunit phpspec behat
 
 integration: init phpunit behat
 
-static: install phpspec phpstan psalm
+##
+## QA
+##-----------------------------------------------------------------
+.PHONY: static phpstan psalm
+
+static: install phpspec phpstan psalm ## Run static analyses
+
+phpstan: ## Run PHPStan analysis
+	vendor/bin/phpstan analyse
+
+psalm: ## Run Psalm analysis
+	vendor/bin/psalm
+
+##
+## Utilities
+##-----------------------------------------------------------------
+.PHONY: help
+
+help: ## Show all make tasks (default)
+	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
+
+-include Makefile.local

@@ -1,0 +1,16 @@
+services:
+
+  wemea_sylius_menu.behat.page.admin.menu_index:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Page\Admin\Menu\IndexPage
+    parent: sylius.behat.page.admin.crud.index
+    public: false
+    arguments:
+      - 'wemea_sylius_menu_admin_menu_index'
+
+  wemea_sylius_menu.behat.page.admin.menu_update:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Page\Admin\Menu\UpdatePage
+    parent: sylius.behat.page.admin.crud.update
+    public: false
+    arguments:
+      - 'wemea_sylius_menu_admin_menu_update'
+

@@ -1,0 +1,39 @@
+sylius_resource:
+  resources:
+    wemea_sylius_menu.menu:
+      driver: doctrine/orm
+      classes:
+        model: Wemea\SyliusMenuPlugin\Entity\Menu
+        repository: Wemea\SyliusMenuPlugin\Repository\MenuRepository
+        form: Wemea\SyliusMenuPlugin\Form\Type\MenuType
+      translation:
+        classes:
+          model: Wemea\SyliusMenuPlugin\Entity\MenuTranslation
+          form: Wemea\SyliusMenuPlugin\Form\Type\MenuTranslationType
+
+
+    wemea_sylius_menu.menu_item:
+      driver: doctrine/orm
+      classes:
+        model: Wemea\SyliusMenuPlugin\Entity\MenuItem
+        repository: Wemea\SyliusMenuPlugin\Repository\MenuItemRepository
+        form: Wemea\SyliusMenuPlugin\Form\Type\MenuItemType
+      translation:
+        classes:
+          model: Wemea\SyliusMenuPlugin\Entity\MenuItemTranslation
+          form: Wemea\SyliusMenuPlugin\Form\Type\MenuItemTranslationType
+
+    wemea_sylius_menu.menu_item_image:
+      driver: doctrine/orm
+      classes:
+        model: Wemea\SyliusMenuPlugin\Entity\MenuItemImage
+        form: Wemea\SyliusMenuPlugin\Form\Type\MenuItemImageType
+
+    wemea_sylius_menu.menu_link:
+      driver: doctrine/orm
+      classes:
+        model: Wemea\SyliusMenuPlugin\Entity\MenuLink
+        form: Wemea\SyliusMenuPlugin\Form\Type\MenuLinkType
+      translation:
+        classes:
+          model: Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslation

@@ -1,0 +1,21 @@
+default:
+  suites:
+    admin_editing_menu:
+      local_coverage_enabled: true
+      contexts:
+        - sylius.behat.context.hook.doctrine_orm
+
+        - sylius.behat.context.transform.shared_storage
+
+        - sylius.behat.context.setup.admin_security
+        - sylius.behat.context.setup.channel
+        - sylius.behat.context.setup.locale
+
+        - wemea_sylius_menu.behat.context.setup.menu
+
+        - sylius.behat.context.ui.admin.notification
+
+        - wemea_sylius_menu.behat.context.ui.admin.menu
+
+      filters:
+        tags: "@editing_menu&&@ui"

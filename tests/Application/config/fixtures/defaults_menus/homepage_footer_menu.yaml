@@ -1,0 +1,48 @@
+sylius_fixtures:
+  suites:
+
+    default:
+      fixtures:
+
+        menu:
+          name: menu
+          options:
+            custom:
+
+              -   code: homepage_footer_menu
+                  visibility: public
+                  enabled: true
+                  translations:
+                    en_US:
+                      title: Footer menu
+                  channels: ['FASHION_WEB']
+                  items:
+                    - target: _self
+                      css_classes: item
+                      translations:
+                        en_US:
+                          title: item 1 - custom link
+                          description: my custom link
+                        fr_FR:
+                          title: item 1 - Lien personalisé
+                      link:
+                        custom_link:
+                          en_US: /#custom-link
+                          fr_FR: /#lien-personnalisé
+
+                    - target: _blank
+                      css_classes: item
+                      translations:
+                        en_US:
+                          title: item 2 - product link
+                      link:
+                        product_code: 000F_office_grey_jeans
+
+                    - target: ~
+                      css_classes: item
+                      translations:
+                        en_US:
+                          title: item 3 - taxon link
+                      link:
+                        taxon_code: caps_with_pompons
+

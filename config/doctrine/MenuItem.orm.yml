@@ -1,0 +1,49 @@
+Wemea\SyliusMenuPlugin\Entity\MenuItem:
+  type: mappedSuperclass
+  table: wemea_menu_item
+  repositoryClass: Wemea\SyliusMenuPlugin\Repository\MenuItemRepository
+
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+
+  fields:
+    target:
+      type: string
+      nullable: false
+      length: 10
+
+    cssClasses:
+      type: string
+      nullable: true
+      column: css_classes
+
+    priority:
+      type: integer
+      nullable: true
+
+  manyToOne:
+    menu:
+      targetEntity: Wemea\SyliusMenuPlugin\Entity\Menu
+      inversedBy: menuItems
+      joinColumn:
+        name: menu_id
+        referencedColumnName: id
+
+  oneToOne:
+    link:
+      targetEntity: Wemea\SyliusMenuPlugin\Entity\MenuLink
+      mappedBy: owner
+      cascade:
+        - persist
+        - remove
+
+    image:
+      targetEntity: Wemea\SyliusMenuPlugin\Entity\MenuItemImage
+      mappedBy: owner
+      orphanRemoval: true
+      cascade:
+        - all

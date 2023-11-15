@@ -1,0 +1,7 @@
+services:
+
+  wemea_sylius_menu.validator.link_is_defined:
+      class: Wemea\SyliusMenuPlugin\Validator\Constraints\LinkIsDefinedValidator
+      public: true
+      tags:
+        - { name: validator.constraint_validator }

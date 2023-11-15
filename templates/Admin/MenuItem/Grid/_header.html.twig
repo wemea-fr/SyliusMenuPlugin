@@ -1,0 +1,5 @@
+{{ render(url('wemea_sylius_menu_admin_partial_menu_show', {
+    'id': app.request.attributes.get('menuId'),
+    'template': '@WemeaSyliusMenuPlugin/Admin/MenuItem/Grid/_menuHeader.html.twig',
+    'vars': configuration.vars
+})) }}

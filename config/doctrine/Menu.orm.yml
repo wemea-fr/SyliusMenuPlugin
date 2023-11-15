@@ -1,0 +1,61 @@
+Wemea\SyliusMenuPlugin\Entity\Menu:
+  type: mappedSuperclass
+  table: wemea_menu
+  repositoryClass: Wemea\SyliusMenuPlugin\Repository\MenuRepository
+
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+
+  fields:
+    code:
+      type: string
+      nullable: false
+      unique: true
+
+    enabled:
+      type: boolean
+      nullable: false
+
+    visibility:
+      type: integer
+      nullable: false
+
+    createdAt:
+      type: datetime
+      column: created_at
+      nullable: true
+      gedmo:
+        timestampable:
+          on: create
+
+    updatedAt:
+      type: datetime
+      column: updated_at
+      nullable: true
+      gedmo:
+        timestampable:
+          on: update
+
+  oneToMany:
+    menuItems:
+      targetEntity: Wemea\SyliusMenuPlugin\Entity\MenuItem
+      mappedBy: menu
+      cascade:
+        - all
+
+  manyToMany:
+    channels:
+      targetEntity: Sylius\Component\Channel\Model\ChannelInterface
+      joinTable:
+        name: wemea_menu_channels
+        joinColumns:
+          menu_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          channel_id:
+            referencedColumnName: id
+

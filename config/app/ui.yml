@@ -1,0 +1,14 @@
+sylius_ui:
+    events:
+      wemea_sylius_menu.admin.menu_item.index.header.content:
+        blocks:
+          breadcrumb:
+            template: "@WemeaSyliusMenuPlugin/Admin/MenuItem/Grid/Index/_breadcrumb.html.twig"
+
+      wemea_sylius_menu.admin.menu_item.create.javascripts:
+        blocks:
+          javascript: "@WemeaSyliusMenuPlugin/Admin/MenuLink/_javascript.html.twig"
+
+      wemea_sylius_menu.admin.menu_item.update.javascripts:
+        blocks:
+          javascript: "@WemeaSyliusMenuPlugin/Admin/MenuLink/_javascript.html.twig"

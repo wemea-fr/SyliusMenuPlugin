@@ -1,0 +1,15 @@
+services:
+
+  wemea_sylius_menu.helper.create_menu:
+    class: Wemea\SyliusMenuPlugin\Helper\CreateMenuHelper
+    arguments:
+      - "@wemea_sylius_menu.factory.menu"
+      - "@sylius.manager.channel"
+      - "%sylius.model.channel.class%"
+
+
+  wemea_sylius_menu.helper.menu_link_path_resolver:
+    class: Wemea\SyliusMenuPlugin\Helper\MenuLinkPathResolverHelper
+    arguments:
+      - "@router"
+      - "%wemea_sylius_menu.resource_path_resolver_configuration%"

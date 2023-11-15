@@ -1,0 +1,33 @@
+Wemea\SyliusMenuPlugin\Entity\MenuLink:
+  type: mappedSuperclass
+  table: wemea_menu_link
+
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+
+  oneToOne:
+    owner:
+      targetEntity: Wemea\SyliusMenuPlugin\Entity\MenuItem
+      inversedBy: link
+      joinColumn:
+        name: owner_id
+        referencedColumnName: id
+
+# TODO : Add Orphan remove with message before remove taxon or product
+  manyToOne:
+    product:
+      targetEntity: Sylius\Component\Product\Model\ProductInterface
+      joinColumn:
+        name: product_id
+        referencedColumnName: id
+
+    taxon:
+      targetEntity: Sylius\Component\Taxonomy\Model\TaxonInterface
+      joinColumn:
+        name: taxon_id
+        referencedColumnName: id

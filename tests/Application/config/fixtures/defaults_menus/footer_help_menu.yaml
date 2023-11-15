@@ -1,0 +1,52 @@
+sylius_fixtures:
+  suites:
+
+    default:
+      fixtures:
+
+        menu:
+          name: menu
+          options:
+            custom:
+
+              -   code: footer_help_menu
+                  visibility: public
+                  enabled: true
+                  translations:
+                    en_US:
+                      title: Help me !
+                    fr_Fr:
+                      title: Aidez moi !
+                  channels: ['FASHION_WEB']
+                  items:
+                    - target: _self
+                      translations:
+                        en_US:
+                          title: Contact us
+                        fr_FR:
+                          title: Contactez nous
+                      link:
+                        custom_link:
+                          en_US: /#
+
+                    - target: _self
+                      translations:
+                        en_US:
+                          title: FAQ
+                          description: Frequently Asked Question
+                        fr_FR:
+                          title: FAQ
+                          description: Foire aux question
+                      link:
+                        custom_link:
+                          en_US: /#
+
+                    - target: _self
+                      translations:
+                        en_US:
+                          title: Sitemap
+                        fr_FR:
+                          title: Plan du site
+                      link:
+                        custom_link:
+                          en_US: /#

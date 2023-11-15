@@ -1,0 +1,36 @@
+{# Load specific theme only for form.image #}
+{% form_theme form.image '@WemeaSyliusMenuPlugin/Ui/Form/imagesTheme.html.twig' %}
+
+{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationForm %}
+
+<div class="ui two column grid">
+    {{ form_errors(form) }}
+    <div class="column">
+        <div class="ui segment">
+            {{ form_row(form.target) }}
+            {{ form_row(form.priority) }}
+            {{ form_row(form.cssClasses) }}
+
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="ui segment">
+
+            {% include '@WemeaSyliusMenuPlugin/Admin/MenuLink/_form.html.twig' with {form: form.link} %}
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="ui  segment">
+            {{ translationForm(form.translations) }}
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="ui  segment">
+            {{ form_row(form.image) }}
+        </div>
+    </div>
+</div>
+

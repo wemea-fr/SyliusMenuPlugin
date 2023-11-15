@@ -1,0 +1,9 @@
+services:
+
+  wemea_sylius_menu.twig_extension.menu_link:
+    class: Wemea\SyliusMenuPlugin\Twig\MenuLinkExtension
+    public: true
+    tags:
+      - { name: twig.extension }
+    arguments:
+      - "@wemea_sylius_menu.helper.menu_link_path_resolver"

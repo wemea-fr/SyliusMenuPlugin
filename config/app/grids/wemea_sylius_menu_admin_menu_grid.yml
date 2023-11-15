@@ -1,0 +1,83 @@
+sylius_grid:
+  grids:
+    wemea_sylius_menu_admin_menu:
+      driver:
+        name: doctrine/orm
+        options:
+          class: "%wemea_sylius_menu.model.menu.class%"
+
+      fields:
+        code:
+          type: string
+          label: sylius.ui.code
+
+        title:
+          type: string
+          label: sylius.ui.title
+
+        channels:
+          type: twig
+          label: wemea_sylius_menu.ui.channels
+          options:
+            template: "@WemeaSyliusMenuPlugin/Admin/Menu/Grid/Field/_channels.html.twig"
+
+        enabled:
+          type: twig
+          label: sylius.ui.enabled
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+
+        visibility:
+          type: twig
+          label: wemea_sylius_menu.ui.visibility
+          options:
+            template: "@WemeaSyliusMenuPlugin/Admin/Menu/Grid/Field/_visibility.html.twig"
+            vars:
+              data_class: "%wemea_sylius_menu.model.menu.class%"
+
+      filters:
+        search:
+          type: string
+          label: sylius.ui.search
+          options:
+            fields: [ code, translations.title ]
+
+        enabled:
+          type: boolean
+          label: sylius.ui.enabled
+
+        visibility:
+          type: select
+          label: wemea_sylius_menu.ui.visibility
+          form_options:
+            choices:
+              wemea_sylius_menu.ui.visibility_label.public: 1
+              wemea_sylius_menu.ui.visibility_label.private: 2
+
+      actions:
+        item:
+          edit:
+            type: update
+            label: sylius.ui.edit
+
+          items:
+            type: links
+            label: wemea_sylius_menu.ui.manage_items
+            options:
+              icon: linkify
+              links:
+                index:
+                  label: wemea_sylius_menu.ui.list_item
+                  icon: list
+                  route: wemea_sylius_menu_admin_menu_item_index
+                  visible: resource.hasMenuItems
+                  parameters:
+                    menuId: resource.id
+                create:
+                  label: wemea_sylius_menu.ui.create_item
+                  icon: plus
+                  route: wemea_sylius_menu_admin_menu_item_create
+                  parameters:
+                    menuId: resource.id
+
+

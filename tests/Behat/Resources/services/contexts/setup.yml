@@ -1,0 +1,26 @@
+services:
+
+  _defaults: { public: true }
+
+  wemea_sylius_menu.behat.context.setup.menu:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Context\Setup\MenuContext
+    arguments:
+      - "@wemea_sylius_menu.factory.menu"
+      - "@wemea_sylius_menu.manager.menu"
+      - "@sylius.behat.shared_storage"
+
+  wemea_sylius_menu.behat.context.setup.menu_item:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Context\Setup\MenuItemContext
+    arguments:
+      - "@wemea_sylius_menu.factory.menu_item"
+      - "@wemea_sylius_menu.repository.menu_item"
+      - "@sylius.behat.shared_storage"
+      - "@wemea_sylius_menu.factory.menu_link"
+      - "@wemea_sylius_menu.factory.menu_item_image"
+      - "@wemea_sylius_menu.factory.menu_link_translation"
+      - "@wemea_sylius_menu.manager.menu_item"
+      - "@sylius.image_uploader"
+      - "@sylius.locale_converter"
+      - "@behat.mink.parameters"
+
+

@@ -1,0 +1,20 @@
+{% import '@WemeaSyliusMenuPlugin/Admin/MenuLink/Form/macro.html.twig' as form_macro %}
+{# Define var to mapped error on the target field #}
+{% set type_error = {
+    is_error: not form.type.vars.valid,
+    property: form.type.vars.value,
+} %}
+
+<div {{ sylius_test_html_attribute('menu-link-container') }}>
+    {{ form_errors(form) }}
+    {{ form_macro.customChoiceWidget(form.type) }}
+
+    <div id="wemea_sylius_menu_link_selector">
+        {% for property in form.vars.allowed_link_properties  %}
+            {{ form_macro.menuLinkProperty(form[property], type_error) }}
+        {% endfor %}
+    </div>
+    {{ form_errors(form.linkIsDefined) }}
+</div>
+
+

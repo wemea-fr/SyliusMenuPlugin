@@ -1,0 +1,13 @@
+wemea_sylius_menu:
+  form:
+    menu:
+      title:
+        not_blank: Veuillez saisir le titre du menu.
+
+
+    menu_link_translation:
+      custom_link:
+        regex: "L'URL doit débuter par \"/\" (lien interne) ou par \"http://\" ou \"http://\" (site externe)"
+        not_blank: This value can not be null
+  validators:
+    link_is_defined: Veuillez definir la cible du lien.

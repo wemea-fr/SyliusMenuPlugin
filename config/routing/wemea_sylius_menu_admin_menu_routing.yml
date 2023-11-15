@@ -1,0 +1,17 @@
+wemea_sylius_menu_admin_menu:
+    resource: |
+        alias: wemea_sylius_menu.menu
+        only: ['index','update']
+        section: admin
+        path: menu
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: wemea_sylius_menu_admin_menu
+        vars:
+            all:
+                subheader: wemea_sylius_menu.ui.menus_management
+                templates:
+                    form: "@WemeaSyliusMenuPlugin/Admin/Menu/_form.html.twig"
+            index:
+                icon: 'list ul'
+    type: sylius.resource

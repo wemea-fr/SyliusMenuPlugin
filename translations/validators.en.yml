@@ -1,0 +1,14 @@
+wemea_sylius_menu:
+  form:
+    menu:
+      title:
+        not_blank: Please, fill the menu title.
+
+
+    menu_link_translation:
+      custom_link:
+        regex: "The URL should start with \"/\" (internal link) or with \"http://\" or \"http://\" (external website)"
+        not_blank: This value can not be null
+
+  validators:
+    link_is_defined: Please, defined the link's target.

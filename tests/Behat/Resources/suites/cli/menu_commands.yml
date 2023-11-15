@@ -1,0 +1,21 @@
+default:
+  suites:
+    cli_menu_commands:
+      local_coverage_enabled: true
+      contexts:
+        - sylius.behat.context.hook.doctrine_orm
+
+        - sylius.behat.context.transform.shared_storage
+        - wemea_sylius_menu.behat.context.transform.menu
+
+        - sylius.behat.context.setup.locale
+        - sylius.behat.context.setup.channel
+
+        - wemea_sylius_menu.behat.context.setup.menu
+        - wemea_sylius_menu.behat.context.setup.menu_item
+
+        - wemea_sylius_menu.behat.context.cli.delete_menu_command
+        - wemea_sylius_menu.behat.context.cli.create_menu_command
+
+      filters:
+        tags: "@menu_command&&@cli"

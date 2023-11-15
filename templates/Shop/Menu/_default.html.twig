@@ -1,0 +1,26 @@
+{% if menu is not null %}
+    <div {{ sylius_test_html_attribute('wemea-sylius-menu', menu.code) }}>
+        <h4 {{ sylius_test_html_attribute('wemea-sylius-menu-title') }}>{{ menu.title }}</h4>
+
+        <ul>
+            {% for item in menu.menuItemsOrderByPriority %}
+                <li><a class="{{ item.cssClasses ? item.cssClasses }}"
+                       href="{{ wemea_sylius_menu_link_path(item.link) }}"
+                       target="{{ item.target }}"
+                       {% if item.description is not null %}
+                           title="{{ item.description }}"
+                        {% endif %}
+
+                            {{ sylius_test_html_attribute('wemea-sylius-menu-item', item.title) }}
+                    >
+
+                        {% if item.image.path|default(null) is not null %}
+                            <img src="{{ item.image.path|imagine_filter('wemea_sylius_menu_link_icon') }}">
+                        {% endif %}
+
+                        {{ item.title }}
+                    </a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

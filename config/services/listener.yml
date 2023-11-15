@@ -1,0 +1,8 @@
+services:
+
+  wemea_sylius_menu.listener.menu_item_image_upload:
+    class: Sylius\Bundle\CoreBundle\EventListener\ImageUploadListener
+    arguments: [ '@sylius.image_uploader' ]
+    tags:
+      - { name: kernel.event_listener, event: wemea_sylius_menu.menu_item.pre_create, method: uploadImage }
+      - { name: kernel.event_listener, event: wemea_sylius_menu.menu_item.pre_update, method: uploadImage }

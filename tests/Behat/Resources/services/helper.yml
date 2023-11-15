@@ -1,0 +1,14 @@
+parameters:
+
+  wemea_sylius_menu.test.parameter.upload_image_directory: "%kernel.project_dir%/public/media/image"
+
+services:
+
+
+  _defaults: { public: false }
+
+  wemea_sylius_menu.behat.helper.image_matcher:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Helper\ImageMatcherHelper
+    arguments:
+      - "@behat.mink.parameters"
+      - "%wemea_sylius_menu.test.parameter.upload_image_directory%"

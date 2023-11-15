@@ -1,0 +1,10 @@
+Wemea\SyliusMenuPlugin\Entity\MenuLink:
+
+  properties:
+    translations:
+      - Valid:
+          groups: ['wemea_sylius_menu']
+
+  constraints:
+    -  Wemea\SyliusMenuPlugin\Validator\Constraints\LinkIsDefined:
+         groups: ['wemea_sylius_menu']

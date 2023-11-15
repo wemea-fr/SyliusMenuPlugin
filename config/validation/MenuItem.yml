@@ -1,0 +1,9 @@
+Wemea\SyliusMenuPlugin\Entity\MenuItem:
+  properties:
+    link:
+      - Valid:
+          groups: ['wemea_sylius_menu']
+
+    translations:
+      - Valid:
+          groups: [ 'wemea_sylius_menu' ]

@@ -1,0 +1,5 @@
+liip_imagine:
+    filter_sets:
+        wemea_sylius_menu_link_icon:
+            filters:
+                thumbnail: { size: [20, 20] }

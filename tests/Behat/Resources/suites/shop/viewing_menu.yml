@@ -1,0 +1,17 @@
+default:
+  suites:
+    shop_viewing_menu:
+      local_coverage_enabled: true
+      contexts:
+        - sylius.behat.context.hook.doctrine_orm
+
+        - sylius.behat.context.transform.shared_storage
+
+        - sylius.behat.context.setup.channel
+        - sylius.behat.context.setup.shop_security
+
+        - wemea_sylius_menu.behat.context.setup.menu
+
+        - wemea_sylius_menu.behat.context.ui.shop.homepage
+      filters:
+        tags: "@viewing_menu&&@ui"

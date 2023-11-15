@@ -17,6 +17,35 @@ final class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('wemea_sylius_menu_plugin');
         $rootNode = $treeBuilder->getRootNode();
 
+        $rootNode
+            ->children()
+                ->arrayNode('resource_path_resolver_configuration')
+//                    FIXME : is possible to had here the default conf ? and Not in extension class
+//                    ->ignoreExtraKeys()
+//                    ->children()
+//                        ->append($this->defaultResourcePathConfiguration('custom', null, []))
+//                        ->append($this->defaultResourcePathConfiguration('product', 'sylius_shop_product_show', [ 'slug' => 'getSlug']))
+//                        ->append($this->defaultResourcePathConfiguration('taxon', 'sylius_shop_product_index', [ 'slug' => 'getSlug']))
+//                    ->end()
+
+                    ->useAttributeAsKey('resource_property')
+                    ->arrayPrototype()
+                        ->children()
+                            ->scalarNode('route')->info('Route name to resolve resource path')
+                            ->end()
+
+                            ->arrayNode('parameters')
+                                ->defaultValue([])
+                                ->useAttributeAsKey('route_parameter')
+                                ->scalarPrototype()->info('Association of route parameters and resource method to access it')
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ->end()
+        ;
+
         return $treeBuilder;
     }
 }

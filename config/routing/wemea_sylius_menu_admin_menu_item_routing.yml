@@ -1,0 +1,88 @@
+wemea_sylius_menu_admin_menu_item_index:
+  path: /
+  methods: [ GET ]
+  defaults:
+    _controller: wemea_sylius_menu.controller.menu_item::indexAction
+    _sylius:
+      template: "@SyliusAdmin/Crud/index.html.twig"
+      grid: wemea_sylius_menu_admin_menu_item
+      section: admin
+      permission: true
+      vars:
+        route:
+          parameters:
+            menuId: $menuId
+        templates:
+          breadcrumb: "@WemeaSyliusMenuPlugin/Admin/MenuItem/Grid/_header.html.twig"
+        action: index
+        icon: 'list ul'
+
+wemea_sylius_menu_admin_menu_item_create:
+  path: /new
+  methods: [GET, POST]
+  defaults:
+    _controller: wemea_sylius_menu.controller.menu_item::createAction
+    _sylius:
+      factory:
+        method: createForMenu
+        arguments:
+          - expr:notFoundOnNull(service('wemea_sylius_menu.repository.menu').find($menuId))
+      template: "@SyliusAdmin/Crud/create.html.twig"
+      section: admin
+      permission: true
+      redirect:
+        route: wemea_sylius_menu_admin_menu_item_index
+        parameters: { menuId: $menuId }
+
+      vars:
+        route:
+          parameters:
+            menuId: $menuId
+        templates:
+          form: "@WemeaSyliusMenuPlugin/Admin/MenuItem/_form.html.twig"
+          breadcrumb: "@WemeaSyliusMenuPlugin/Admin/MenuItem/Grid/Create/_breadcrumb.html.twig"
+        action: create
+
+wemea_sylius_menu_admin_menu_item_update:
+  path: /{id}/edit
+  methods: [GET, PUT]
+  defaults:
+    _controller: wemea_sylius_menu.controller.menu_item::updateAction
+    _sylius:
+      template: "@SyliusAdmin/Crud/update.html.twig"
+      grid: wemea_sylius_menu_admin_menu_item
+      section: admin
+      permission: true
+      redirect:
+        route: wemea_sylius_menu_admin_menu_item_index
+        parameters: { menuId: $menuId }
+      repository:
+        method: find
+        arguments:
+          id: $id
+      vars:
+        route:
+          parameters:
+            id: $id
+            menuId: $menuId
+        templates:
+          form: "@WemeaSyliusMenuPlugin/Admin/MenuItem/_form.html.twig"
+#          breadcrumb: "@WemeaSyliusMenuPlugin/Admin/MenuItem/Grid/_header.html.twig"
+          breadcrumb: "@WemeaSyliusMenuPlugin/Admin/MenuItem/Grid/Update/_breadcrumb.html.twig"
+        action: update
+
+wemea_sylius_menu_admin_menu_item_delete:
+  path: /{id}
+  methods: [ DELETE ]
+  defaults:
+    _controller: wemea_sylius_menu.controller.menu_item::deleteAction
+    _sylius:
+      section: admin
+      redirect: referer
+      permission: true
+      repository:
+        method: findOneByIdAndMenuId
+        arguments:
+          id: $id
+          menuId: $menuId
+

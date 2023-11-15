@@ -1,0 +1,15 @@
+Wemea\SyliusMenuPlugin\Entity\MenuTranslation:
+  type: mappedSuperclass
+  table: wemea_menu_translation
+
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+
+  fields:
+    title:
+      type: string
+      nullable: false

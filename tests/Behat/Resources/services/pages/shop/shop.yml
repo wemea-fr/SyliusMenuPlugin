@@ -1,0 +1,8 @@
+services:
+
+  wemea_sylius_menu.behat.page.shop.homepage:
+    class: Tests\Wemea\SyliusMenuPlugin\Behat\Page\Shop\Homepage\HomePage
+    parent: sylius.behat.page.shop.home
+    public: false
+    arguments:
+      - 'wemea_sylius_menu_admin_menu_index'
