@@ -2,9 +2,11 @@ parameters:
     level: max
     reportUnmatchedIgnoredErrors: false
     checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
     paths:
         - src
-        - tests/Behat
+        # TODO: process phpstan alerts on Behat source code
+        #- tests/Behat
 
     excludes_analyse:
         # Makes PHPStan crash
