@@ -16,21 +16,20 @@ use Symfony\Component\Form\FormEvents;
 
 class MenuItemType extends AbstractResourceType
 {
-    /** @var string|MenuLinkInterface */
-    protected $linkClass;
 
-    /** @var MenuLinkFactoryInterface */
-    protected $menuLinkFactory;
-
+    /**
+     * @param string $dataClass
+     * @param string $linkClass
+     * @param MenuLinkFactoryInterface $menuLinkFactory
+     * @param string[] $validationGroups
+     */
     public function __construct(
         string $dataClass,
-        string $linkClass,
-        MenuLinkFactoryInterface $menuLinkFactory,
+        protected string $linkClass,
+        protected MenuLinkFactoryInterface $menuLinkFactory,
         array $validationGroups = [],
     ) {
         parent::__construct($dataClass, $validationGroups);
-        $this->linkClass = $linkClass;
-        $this->menuLinkFactory = $menuLinkFactory;
     }
 
     /**
@@ -83,6 +82,7 @@ class MenuItemType extends AbstractResourceType
     {
         $choices = [];
 
+        /** @var string $target */
         foreach ($this->dataClass::AVAILABLE_TARGETS as $target) {
             $choices['wemea_sylius_menu.ui.target_label.' . $target] = $target;
         }

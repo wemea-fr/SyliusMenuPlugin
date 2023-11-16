@@ -18,23 +18,12 @@ interface MenuInterface extends ToggleableInterface, VisibilityTraitInterface
 
     public function removeMenuItem(?MenuItemInterface $menuItem): void;
 
-    /**
-     * @param Collection|MenuItemInterface[] $menuItems
-     */
     public function setItems(Collection $menuItems): void;
 
-    /**
-     * @return Collection|MenuItemInterface[]
-     * @psalm-return Collection<int, MenuItemInterface>
-     */
     public function getMenuItems(): Collection;
 
     public function hasMenuItems(): bool;
 
-    /**
-     * @return Collection|ChannelInterface[]
-     * @psalm-return Collection<int, ChannelInterface>
-     */
     public function getChannels(): Collection;
 
     public function addChannel(ChannelInterface $channel): void;

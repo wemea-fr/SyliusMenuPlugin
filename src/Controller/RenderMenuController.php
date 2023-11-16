@@ -15,28 +15,12 @@ final class RenderMenuController
 {
     public const DEFAULT_MENU_TEMPLATE = '@WemeaSyliusMenuPlugin/Shop/Menu/_default.html.twig';
 
-    /** @var Environment */
-    private $templatingEngine;
-
-    /** @var MenuRepositoryInterface */
-    private $menuRepository;
-
-    /** @var ShopperContextInterface */
-    private $shopperContext;
-
-    /** @var AuthorizationCheckerInterface */
-    private $authorizationChecker;
-
     public function __construct(
-        Environment $templatingEngine,
-        MenuRepositoryInterface $menuRepository,
-        ShopperContextInterface $shopperContext,
-        AuthorizationCheckerInterface $authorizationChecker,
+        private Environment $templatingEngine,
+        private MenuRepositoryInterface $menuRepository,
+        private ShopperContextInterface $shopperContext,
+        private AuthorizationCheckerInterface $authorizationChecker,
     ) {
-        $this->templatingEngine = $templatingEngine;
-        $this->menuRepository = $menuRepository;
-        $this->shopperContext = $shopperContext;
-        $this->authorizationChecker = $authorizationChecker;
     }
 
     public function renderAction(string $code, string $template = self::DEFAULT_MENU_TEMPLATE): Response

@@ -19,10 +19,10 @@ class Menu implements MenuInterface
     /** @var string|null */
     protected $code;
 
-    /** @var ArrayCollection|Collection|MenuItemInterface[] */
+    /** @var Collection */
     protected $menuItems;
 
-    /** @var ArrayCollection|Collection|ChannelInterface[] */
+    /** @var Collection */
     protected $channels;
 
     public function __construct()

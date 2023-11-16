@@ -34,9 +34,13 @@ final class WemeaSyliusMenuExtension extends AbstractResourceExtension implement
         ],
     ];
 
-    /** @psalm-suppress UnusedVariable */
+    /**
+     * @psalm-suppress UnusedVariable
+     * @psalm-suppress MixedArgument
+     */
     public function load(array $configs, ContainerBuilder $container): void
     {
+        /** @psalm-suppress PossiblyNullArgument */
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);
         //FIXME : is the good way to do this ? Prefer do it on configuration file ?
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));

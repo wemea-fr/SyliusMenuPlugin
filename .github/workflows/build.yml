@@ -169,10 +169,9 @@ jobs:
                 name: Run PHPStan
                 run: vendor/bin/phpstan analyse -c phpstan.neon -l max src/
 
-            # TODO: reintroduce Psalm analysis when code adjusted and checked
-#            -
-#                name: Run Psalm
-#                run: vendor/bin/psalm
+            -
+                name: Run Psalm
+                run: vendor/bin/psalm
 
             -
                 name: Run PHPSpec

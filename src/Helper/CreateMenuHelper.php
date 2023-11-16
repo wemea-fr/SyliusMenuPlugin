@@ -12,11 +12,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class CreateMenuHelper implements CreateMenuHelperInterface
 {
-    /** @var MenuFactoryInterface */
-    protected $menuFactory;
-
-    /** @var EntityManagerInterface */
-    protected $channelManager;
 
     /** @var class-string */
     protected $channelClassName;
@@ -25,12 +20,10 @@ class CreateMenuHelper implements CreateMenuHelperInterface
      * @param class-string $channelClassName
      */
     public function __construct(
-        MenuFactoryInterface $menuFactory,
-        EntityManagerInterface $channelManager,
+        protected MenuFactoryInterface $menuFactory,
+        protected EntityManagerInterface $channelManager,
         $channelClassName,
     ) {
-        $this->menuFactory = $menuFactory;
-        $this->channelManager = $channelManager;
         $this->channelClassName = $channelClassName;
     }
 
@@ -69,7 +62,7 @@ class CreateMenuHelper implements CreateMenuHelperInterface
      */
     protected function getChannelsFromCodes(array $channelsCode): array
     {
-        /** @var array $channels */
+        /** @var ChannelInterface[] $channels */
         $channels = $this->channelManager
             ->createQueryBuilder()
             ->select('c')

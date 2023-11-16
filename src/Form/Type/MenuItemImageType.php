@@ -15,21 +15,20 @@ use Symfony\Component\Form\FormEvents;
 
 class MenuItemImageType extends ImageType
 {
-    /** @var ImageUploaderInterface */
-    protected $imageUploader;
 
-    /** @var RepositoryInterface */
-    protected $menuItemImageRepository;
-
+    /**
+     * @param ImageUploaderInterface $imageUploader
+     * @param RepositoryInterface $menuItemImageRepository
+     * @param string $dataClass
+     * @param string[] $validationGroups
+     */
     public function __construct(
-        ImageUploaderInterface $imageUploader,
-        RepositoryInterface $menuItemImageRepository,
+        protected ImageUploaderInterface $imageUploader,
+        protected RepositoryInterface $menuItemImageRepository,
         string $dataClass,
         array $validationGroups = [],
     ) {
         parent::__construct($dataClass, $validationGroups);
-        $this->imageUploader = $imageUploader;
-        $this->menuItemImageRepository = $menuItemImageRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -64,6 +63,7 @@ class MenuItemImageType extends ImageType
 
                 return;
             }
+            /** @psalm-suppress PossiblyNullArgument */
             $this->imageUploader->remove($image->getPath());
             $this->menuItemImageRepository->remove($image);
             $event->setData(null);

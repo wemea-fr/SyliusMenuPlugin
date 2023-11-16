@@ -53,6 +53,7 @@ class Menu extends BaseMenu implements MenuInterface
     public function getMenuItemsOrderByPriority(): array
     {
         //TODO : find better way to do this
+        /** @var MenuItem[] $items */
         $items = $this->menuItems->toArray();
 
         /** @phpstan-ignore-next-line */

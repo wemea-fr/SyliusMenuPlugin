@@ -17,16 +17,16 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 final class MenuFixture extends AbstractResourceFixture
 {
-    /** @var string */
-    protected $defaultLocale;
 
     /** @var Generator */
     protected $faker;
 
-    public function __construct(EntityManagerInterface $objectManager, ExampleFactoryInterface $exampleFactory, string $defaultLocale)
+    public function __construct(
+        EntityManagerInterface $objectManager,
+        ExampleFactoryInterface $exampleFactory,
+        protected string $defaultLocale)
     {
         parent::__construct($objectManager, $exampleFactory);
-        $this->defaultLocale = $defaultLocale;
         $this->faker = Factory::create();
     }
 
@@ -84,6 +84,9 @@ final class MenuFixture extends AbstractResourceFixture
      * @psalm-suppress MixedMethodCall
      * @psalm-suppress UnusedMethodCall
      * @psalm-suppress PossiblyUndefinedMethod
+     * @psalm-suppress MixedReturnStatement
+     * @psalm-suppress UndefinedMethod
+     * @psalm-suppress MixedInferredReturnType
      */
     protected function getItemsNodeDefinition(): NodeDefinition
     {
@@ -139,6 +142,9 @@ final class MenuFixture extends AbstractResourceFixture
      * @psalm-suppress MixedMethodCall
      * @psalm-suppress UnusedMethodCall
      * @psalm-suppress PossiblyUndefinedMethod
+     * @psalm-suppress MixedReturnStatement
+     * @psalm-suppress UndefinedMethod
+     * @psalm-suppress MixedInferredReturnType
      */
     protected function getLinkDefinition(): NodeDefinition
     {

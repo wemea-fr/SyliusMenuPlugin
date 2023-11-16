@@ -69,6 +69,7 @@ class MenuExampleFactory extends AbstractExampleFactory
 
     protected function configureOptions(OptionsResolver $resolver): void
     {
+        /** @psalm-suppress UnusedClosureParam */
         $resolver
             ->setDefined('code')
             ->setAllowedTypes('code', 'string')
@@ -78,7 +79,7 @@ class MenuExampleFactory extends AbstractExampleFactory
 
             ->setDefault('visibility', 'public')
             ->setAllowedTypes('visibility', 'string')
-            ->setNormalizer('visibility', function (Options $options, $value): int {
+            ->setNormalizer('visibility', function (Options $options, string $value): int {
                 /** @var int $visibilityValue */
                 $visibilityValue = array_search($value, VisibilityTraitInterface::VISIBILITY_CODE, true);
 
@@ -95,6 +96,7 @@ class MenuExampleFactory extends AbstractExampleFactory
 
             ->setDefined('items')
             ->setNormalizer('items', function (Options $options, array $value): array {
+                /** @psalm-suppress MixedArgument */
                 return array_map([$this, 'createItem'], $value);
             })
         ;
@@ -106,13 +108,25 @@ class MenuExampleFactory extends AbstractExampleFactory
         /** @var MenuInterface $menu */
         $menu = $this->menuFactory->createNew();
 
-        $menu->setCode($options['code']);
-        $menu->setEnabled($options['enabled']);
-        $menu->setVisibility($options['visibility']);
+        /** @var string $code */
+        $code = $options['code'];
+        $menu->setCode($code);
+        /** @var bool $enabled */
+        $enabled = $options['enabled'];
+        $menu->setEnabled($enabled);
+        /** @var int $visibility */
+        $visibility = $options['visibility'];
+        $menu->setVisibility($visibility);
 
+        /**
+         * @var string $locale
+         * @var array $value
+         */
         foreach ($options['translations'] as $locale => $value) {
             $menu->setCurrentLocale($locale);
-            $menu->setTitle($value['title']);
+            /** @var ?string $title */
+            $title = $value['title'];
+            $menu->setTitle($title);
         }
 
         /** @var ChannelInterface $channel */
@@ -134,13 +148,17 @@ class MenuExampleFactory extends AbstractExampleFactory
         /** @var MenuItemInterface $menuItem */
         $menuItem = $this->menuItemFactory->createNew();
 
-        $menuItem->setTarget($itemParameters['target']);
-        $menuItem->setPriority($itemParameters['priority'] ?? null);
-        $menuItem->setCssClasses($itemParameters['css_classes'] ?? null);
+        $menuItem->setTarget((string) $itemParameters['target']);
+        /** @var ?int $priority */
+        $priority = $itemParameters['priority'] ?? null;
+        $menuItem->setPriority($priority);
+        /** @var ?string $cssClasses */
+        $cssClasses = $itemParameters['css_classes'] ?? null;
+        $menuItem->setCssClasses($cssClasses);
 
         /**
          * @var  string $locale
-         * @var  array|string[] $translation */
+         * @var  string[] $translation */
         foreach ($itemParameters['translations'] as $locale => $translation) {
             $menuItem->setCurrentLocale($locale);
             $menuItem->setTitle($translation['title']);
@@ -150,27 +168,33 @@ class MenuExampleFactory extends AbstractExampleFactory
         //Create Link
         /** @var MenuLinkInterface $link */
         $link = $this->menuLinkFactory->createForMenuItem($menuItem);
-        if (array_key_exists('custom_link', $itemParameters['link']) && count($itemParameters['link']['custom_link']) > 0) {
+        /** @var ?array $itemParamsLink */
+        $itemParamsLink = array_key_exists('link', $itemParameters) ? $itemParameters['link'] : null;
+        /** @var ?string $productCode */
+        $productCode = is_array($itemParamsLink) && array_key_exists('product_code', $itemParamsLink) ? $itemParamsLink['product_code'] : null;
+        /** @var ?string $taxonCode */
+        $taxonCode = is_array($itemParamsLink) && array_key_exists('taxon_code', $itemParamsLink) ? $itemParamsLink['taxon_code'] : null;
+        if (is_array($itemParamsLink) && array_key_exists('custom_link', $itemParamsLink) && is_array($itemParamsLink['custom_link']) && count($itemParamsLink['custom_link']) > 0) {
             $link->setLinkResource(MenuLinkInterface::CUSTOM_LINK_PROPERTY, new ArrayCollection());
             /**
              * @var string $locale
              * @var string  $path */
-            foreach ($itemParameters['link']['custom_link'] as $locale => $path) {
+            foreach ($itemParamsLink['custom_link'] as $locale => $path) {
                 $link->setCurrentLocale($locale);
                 $link->setCustomLink($path);
             }
-        } elseif (null !== ($itemParameters['link']['product_code'] ?? null)) {
-            $product = $this->productRepository->findOneByCode($itemParameters['link']['product_code']);
+        } elseif (null !== $productCode) {
+            $product = $this->productRepository->findOneByCode($productCode);
             Assert::notNull(
                 $product,
-                sprintf('Product with code %s not found', $itemParameters['link']['product_code']),
+                sprintf('Product with code %s not found', $productCode),
             );
             $link->setLinkResource('product', $product);
-        } elseif (null !== ($itemParameters['link']['taxon_code'] ?? null)) {
-            $taxon = $this->taxonRepository->findOneBy(['code' => $itemParameters['link']['taxon_code']]);
+        } elseif (null !== $taxonCode) {
+            $taxon = $this->taxonRepository->findOneBy(['code' => $taxonCode]);
             Assert::notNull(
                 $taxon,
-                sprintf('Taxon with code %s not found', $itemParameters['link']['taxon_code']),
+                sprintf('Taxon with code %s not found', $taxonCode),
             );
             $link->setLinkResource('taxon', $taxon);
         } else {

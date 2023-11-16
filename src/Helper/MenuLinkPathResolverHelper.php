@@ -11,16 +11,11 @@ use Webmozart\Assert\Assert;
 
 class MenuLinkPathResolverHelper implements MenuLinkPathResolverInterface
 {
-    /** @var RouterInterface */
-    protected $router;
 
-    /** @var array */
-    protected $resourceRouteConfiguration;
-
-    public function __construct(RouterInterface $router, array $resourceRouteConfiguration)
-    {
-        $this->router = $router;
-        $this->resourceRouteConfiguration = $resourceRouteConfiguration;
+    public function __construct(
+        protected RouterInterface $router,
+        protected array $resourceRouteConfiguration
+    ) {
     }
 
     public function resolveLinkPath(MenuLinkInterface $menuLink): string
@@ -34,6 +29,7 @@ class MenuLinkPathResolverHelper implements MenuLinkPathResolverInterface
             $path = $menuLink->getCustomLink();
             /** @var MenuItemInterface $owner */
             $owner = $menuLink->getOwner();
+            /** @psalm-suppress PossiblyNullArgument */
             Assert::notNull($path, sprintf('No path defined for the menu item link : %s', $owner->getTitle()));
 
             return $path;
@@ -42,15 +38,27 @@ class MenuLinkPathResolverHelper implements MenuLinkPathResolverInterface
         //else resolve the route
         Assert::keyExists($this->resourceRouteConfiguration, $resourceType, sprintf('Not configuration found for the resource %s', $resourceType));
 
+        /** @var array $routeConfiguration */
         $routeConfiguration = $this->resourceRouteConfiguration[$resourceType];
         $routeParameters = [];
+        /**
+         * @var string $parameter
+         * @var string $method
+         */
         foreach ($routeConfiguration['parameters'] as $parameter => $method) {
-            /** @phpstan-ignore-next-line */
+            /**
+             * @phpstan-ignore-next-line
+             * @psalm-suppress MixedAssignment
+             * @psalm-suppress MixedMethodCall
+             * @psalm-suppress PossiblyInvalidMethodCall
+             */
             $routeParameters[$parameter] = $resource->$method();
         }
 
+        /** @var string $route */
+        $route = $routeConfiguration['route'];
         return $this->router->generate(
-            $routeConfiguration['route'],
+            $route,
             $routeParameters,
         );
     }

@@ -49,6 +49,10 @@ class MenuType extends AbstractResourceType
     {
         $choices = [];
 
+        /**
+         * @var string $value
+         * @var string $code
+         */
         foreach ($this->dataClass::VISIBILITY_CODE as $value => $code) {
             $choices['wemea_sylius_menu.ui.visibility_label.' . $code] = $value;
         }

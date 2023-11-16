@@ -20,8 +20,6 @@ use Symfony\Component\Form\FormView;
 
 final class MenuLinkType extends AbstractResourceType
 {
-//    /** @var string|MenuLinkInterface */
-//    protected $dataClass;
 
     /**
      * @inheritdoc
@@ -37,6 +35,7 @@ final class MenuLinkType extends AbstractResourceType
 
                 if ($item->getType() !== null && $item->getLinkResource() !== null) {
                     $event->getForm()->get('type')->setData($item->getType());
+                    /** @psalm-suppress PossiblyNullArgument */
                     $event->getForm()->get($item->getType())->setData($item->getLinkResource());
                 }
             })
@@ -78,11 +77,15 @@ final class MenuLinkType extends AbstractResourceType
                 try {
                     /** @var string $type */
                     $type = $event->getForm()->get('type')->getData();
+                    /** @psalm-suppress MixedAssignment */
                     $linkValue = $event->getForm()->get($type)->getData();
 
                     /** @var MenuLinkInterface $link */
                     $link = $event->getData();
-                    /** @phpstan-ignore-next-line */
+                    /**
+                     * @phpstan-ignore-next-line
+                     * @psalm-suppress MixedArgument
+                     */
                     $link->setLinkResource($type, $linkValue);
                 } catch (\Exception $e) {
                     // it crash if $type is not valid.
@@ -103,6 +106,7 @@ final class MenuLinkType extends AbstractResourceType
 
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
+        /** @psalm-suppress MixedArrayAssignment */
         $view->vars['allowed_link_properties'] = $this->dataClass::getLinkProperties();
     }
 
@@ -110,6 +114,7 @@ final class MenuLinkType extends AbstractResourceType
     {
         $choices = [];
 
+        /** @var string $property */
         foreach ($this->dataClass::getLinkProperties() as $property) {
             $choices['wemea_sylius_menu.ui.link_type_label.' . $property] = $property;
         }

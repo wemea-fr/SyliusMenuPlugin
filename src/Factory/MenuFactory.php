@@ -4,19 +4,20 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Factory;
 
+use Sylius\Component\Core\Model\ChannelInterface;
 use Wemea\SyliusMenuPlugin\Model\MenuInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
 class MenuFactory implements MenuFactoryInterface
 {
-    /** @var FactoryInterface */
-    protected $decoratedFactory;
 
-    public function __construct(FactoryInterface $decoratedFactory)
-    {
-        $this->decoratedFactory = $decoratedFactory;
+    public function __construct(
+        protected FactoryInterface $decoratedFactory
+    ) {
     }
 
+
+    /** @psalm-return MenuInterface */
     public function createNew(): MenuInterface
     {
         /** @var MenuInterface $menu */
@@ -39,6 +40,7 @@ class MenuFactory implements MenuFactoryInterface
             $menu->makeItPrivate();
         }
 
+        /** @var ChannelInterface $channel */
         foreach ($channels as $channel) {
             $menu->addChannel($channel);
         }

@@ -7,6 +7,9 @@ namespace Wemea\SyliusMenuPlugin\Entity;
 use Wemea\SyliusMenuPlugin\Model\MenuLink as BaseMenuLink;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 
+/**
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class MenuLink extends BaseMenuLink implements MenuLinkInterface
 {
     use TranslatableTrait {

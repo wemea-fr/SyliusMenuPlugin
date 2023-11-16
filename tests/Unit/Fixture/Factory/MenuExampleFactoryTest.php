@@ -477,7 +477,6 @@ class MenuExampleFactoryTest extends TestCase
             $item->getTarget(),
             'This items has not the expected target'
         );
-
         $this->assertSame(
             $expectedResult['css_classes'],
             $item->getCssClasses(),

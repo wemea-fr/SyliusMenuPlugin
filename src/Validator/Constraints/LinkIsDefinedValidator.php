@@ -14,40 +14,44 @@ use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
 class LinkIsDefinedValidator extends ConstraintValidator
 {
-    /** @var string */
-    protected $defaultMessageLinkIsDefined;
 
-    /** @phpstan-ignore-next-line */
-    public function validate($menuLink, Constraint $constraint): void
+    /**
+     * @phpstan-ignore-next-line
+     * @psalm-suppress MissingParamType
+     */
+    public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof LinkIsDefined) {
             throw new UnexpectedTypeException($constraint, LinkIsDefined::class);
         }
 
-        if (!$menuLink instanceof MenuLinkInterface) {
-            throw new UnexpectedValueException($menuLink, MenuLinkInterface::class);
+        if (!$value instanceof MenuLinkInterface) {
+            throw new UnexpectedValueException($value, MenuLinkInterface::class);
         }
         //init message
-        $this->defaultMessageLinkIsDefined = $constraint->messageLinkIsDefined;
+        $defaultMessageLinkIsDefined = $constraint->messageLinkIsDefined;
 
         //Is null if all allowed properties are null
-        if (null === $menuLink->getType()) {
-            $this->buildViolationOnResourceLink();
+        if (null === $value->getType()) {
+            $this->buildViolationOnResourceLink($defaultMessageLinkIsDefined);
         }
 
         //add custom validation constraint on translation collection to validate the custom link
-        if ($menuLink->getType() === MenuLinkInterface::CUSTOM_LINK_PROPERTY) {
+        if ($value->getType() === MenuLinkInterface::CUSTOM_LINK_PROPERTY) {
             /** @var Collection|MenuLinkTranslationInterface[] $customLinkTranslations */
-            $customLinkTranslations = $menuLink->getLinkResource();
+            $customLinkTranslations = $value->getLinkResource();
 
             if (count($customLinkTranslations) < 1) {
-                $this->buildViolationOnResourceLink();
+                $this->buildViolationOnResourceLink($defaultMessageLinkIsDefined);
             }
 
+            /** @var MenuLinkTranslationInterface $translation */
             foreach ($customLinkTranslations as $translation) {
                 //Is not valid if each translation is null or eq to empty string
+                /** @psalm-suppress PossiblyNullArgument */
                 if (null === $translation->getCustomLink() || trim($translation->getCustomLink()) === '') {
                     //Build custom violation on the target field
+                    /** @psalm-suppress PossiblyNullArgument */
                     $this->context->buildViolation($constraint->messageLinkNotBlank)
                         ->atPath(sprintf('translations[%s].customLink', $translation->getLocale()))
                         ->addViolation()
@@ -57,10 +61,12 @@ class LinkIsDefinedValidator extends ConstraintValidator
         }
     }
 
-    protected function buildViolationOnResourceLink(?string $message = null): void
+    protected function buildViolationOnResourceLink(string $message): void
     {
-        $message = $message ?? $this->defaultMessageLinkIsDefined;
-
+        /**
+         * @phpstan-ignore-next-line
+         * @psalm-suppress PossiblyNullArgument
+         */
         $this->context->buildViolation($message)
             ->atPath('linkIsDefined')
             ->addViolation()

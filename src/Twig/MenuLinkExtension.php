@@ -10,13 +10,10 @@ use Twig\TwigFunction;
 
 class MenuLinkExtension extends AbstractExtension
 {
-    /** @var MenuLinkPathResolverInterface */
-    protected $linkPathResolver;
 
     public function __construct(
-        MenuLinkPathResolverInterface $linkPathResolver,
+        protected MenuLinkPathResolverInterface $linkPathResolver,
     ) {
-        $this->linkPathResolver = $linkPathResolver;
     }
 
     public function getFunctions()

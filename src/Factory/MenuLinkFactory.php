@@ -10,14 +10,13 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class MenuLinkFactory implements MenuLinkFactoryInterface
 {
-    /** @var FactoryInterface */
-    private $decoratedFactory;
-
-    public function __construct(FactoryInterface $decoratedFactory)
-    {
-        $this->decoratedFactory = $decoratedFactory;
+    public function __construct(
+        private FactoryInterface $decoratedFactory
+    ) {
     }
 
+
+    /** @psalm-return MenuLinkInterface */
     public function createNew(): MenuLinkInterface
     {
         /** @var MenuLinkInterface $link */

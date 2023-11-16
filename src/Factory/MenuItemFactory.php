@@ -10,14 +10,13 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class MenuItemFactory implements MenuItemFactoryInterface
 {
-    /** @var FactoryInterface */
-    private $decoratedFactory;
 
-    public function __construct(FactoryInterface $decoratedFactory)
-    {
-        $this->decoratedFactory = $decoratedFactory;
+    public function __construct(
+        private FactoryInterface $decoratedFactory
+    ) {
     }
 
+    /** @psalm-return MenuItemInterface */
     public function createNew(): MenuItemInterface
     {
         /** @var MenuItemInterface $menuItem */

@@ -18,11 +18,10 @@ class DeleteMenuCommand extends Command
 {
     protected static $defaultName = 'wemea:menu:delete';
 
-    /** @var MenuRepositoryInterface */
-    protected $menuRepository;
-
-    public function __construct(MenuRepositoryInterface $menuRepository, string $name = null)
-    {
+    public function __construct(
+        protected MenuRepositoryInterface $menuRepository,
+        string $name = null
+    ) {
         parent::__construct($name);
 
         $this->menuRepository = $menuRepository;

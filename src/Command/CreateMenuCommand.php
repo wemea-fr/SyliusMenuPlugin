@@ -20,26 +20,13 @@ class CreateMenuCommand extends Command
 
     protected static $defaultName = 'wemea:menu:create';
 
-    /** @var MenuRepositoryInterface */
-    protected $menuRepository;
-
-    /** @var RouterInterface */
-    protected $router;
-
-    /** @var CreateMenuHelperInterface */
-    protected $createMenuHelper;
-
     public function __construct(
-        MenuRepositoryInterface $menuRepository,
-        RouterInterface $router,
-        CreateMenuHelperInterface $createMenuHelper,
+        protected MenuRepositoryInterface $menuRepository,
+        protected RouterInterface $router,
+        protected CreateMenuHelperInterface $createMenuHelper,
         string $name = null,
     ) {
         parent::__construct($name);
-
-        $this->menuRepository = $menuRepository;
-        $this->router = $router;
-        $this->createMenuHelper = $createMenuHelper;
     }
 
     protected function configure(): void
@@ -109,7 +96,6 @@ class CreateMenuCommand extends Command
         $this->menuRepository->add($menu);
 
         $route = $this->router->generate(self::EDIT_MENU_ROUTE_NAME, ['id' => $menu->getId()]);
-//        //write the success message
         $io->success(sprintf('The menu %s is created.', $code));
 
         $io->writeln([
