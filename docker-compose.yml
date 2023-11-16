@@ -26,6 +26,19 @@ services:
         networks:
             - sylius
 
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - mysql
+        environment:
+            PMA_HOST: mysql
+            PMA_PORT: 3306
+        restart: always
+        ports:
+            - 8082:80
+        networks:
+            - sylius
+
 networks:
     sylius:
         driver: bridge
