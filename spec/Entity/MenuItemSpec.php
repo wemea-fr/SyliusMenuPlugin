@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace spec\Wemea\SyliusMenuPlugin\Entity;
 
-use Wemea\SyliusMenuPlugin\Entity\MenuItem;
-use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
-use Wemea\SyliusMenuPlugin\Model\MenuItem as BaseMenuItem;
-use Wemea\SyliusMenuPlugin\Model\MenuItemInterface as BaseMenuItemInterface;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\ImageAwareInterface;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuItem;
+use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
+use Wemea\SyliusMenuPlugin\Model\MenuItem as BaseMenuItem;
+use Wemea\SyliusMenuPlugin\Model\MenuItemInterface as BaseMenuItemInterface;
 
 class MenuItemSpec extends ObjectBehavior
 {

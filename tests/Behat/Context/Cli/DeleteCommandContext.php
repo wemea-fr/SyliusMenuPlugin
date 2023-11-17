@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Wemea\SyliusMenuPlugin\Behat\Context\Cli;
 
+use Symfony\Component\HttpKernel\KernelInterface;
+use Webmozart\Assert\Assert;
 use Wemea\SyliusMenuPlugin\Command\DeleteMenuCommand;
 use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
 use Wemea\SyliusMenuPlugin\Repository\MenuRepositoryInterface;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Webmozart\Assert\Assert;
 
 class DeleteCommandContext extends AbstractCliContext
 {

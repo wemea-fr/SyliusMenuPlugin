@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Entity;
 
-use Wemea\SyliusMenuPlugin\Model\MenuItemInterface as BaseMenuItemInterface;
 use Sylius\Component\Core\Model\ImageAwareInterface;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
+use Wemea\SyliusMenuPlugin\Model\MenuItemInterface as BaseMenuItemInterface;
 
 interface MenuItemInterface extends BaseMenuItemInterface, ResourceInterface, TranslatableInterface, ImageAwareInterface
 {

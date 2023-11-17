@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace spec\Wemea\SyliusMenuPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use PhpSpec\ObjectBehavior;
+use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Resource\Model\ToggleableInterface;
 use Wemea\SyliusMenuPlugin\Model\Menu;
 use Wemea\SyliusMenuPlugin\Model\MenuInterface;
 use Wemea\SyliusMenuPlugin\Model\MenuItemInterface;
 use Wemea\SyliusMenuPlugin\Model\VisibilityTraitInterface;
-use PhpSpec\ObjectBehavior;
-use Sylius\Component\Core\Model\ChannelInterface;
-use Sylius\Component\Resource\Model\ToggleableInterface;
 
 final class MenuSpec extends ObjectBehavior
 {

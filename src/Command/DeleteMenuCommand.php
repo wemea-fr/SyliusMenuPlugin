@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Command;
 
-use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
-use Wemea\SyliusMenuPlugin\Repository\MenuRepositoryInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputArgument;
@@ -13,6 +11,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
+use Wemea\SyliusMenuPlugin\Repository\MenuRepositoryInterface;
 
 class DeleteMenuCommand extends Command
 {
@@ -20,7 +20,7 @@ class DeleteMenuCommand extends Command
 
     public function __construct(
         protected MenuRepositoryInterface $menuRepository,
-        string $name = null
+        string $name = null,
     ) {
         parent::__construct($name);
 

@@ -15,11 +15,7 @@ use Symfony\Component\Form\FormEvents;
 
 class MenuItemImageType extends ImageType
 {
-
     /**
-     * @param ImageUploaderInterface $imageUploader
-     * @param RepositoryInterface $menuItemImageRepository
-     * @param string $dataClass
      * @param string[] $validationGroups
      */
     public function __construct(

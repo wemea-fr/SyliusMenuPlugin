@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraint;
 
 /**
  * @Annotation
+ *
  * @psalm-suppress PropertyNotSetInConstructor
  */
 class LinkIsDefined extends Constraint

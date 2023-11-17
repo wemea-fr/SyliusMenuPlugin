@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace spec\Wemea\SyliusMenuPlugin\Entity;
 
+use PhpSpec\ObjectBehavior;
+use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\TranslatableInterface;
 use Wemea\SyliusMenuPlugin\Entity\MenuLink;
 use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface;
 use Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslationInterface;
 use Wemea\SyliusMenuPlugin\Model\MenuLink as BaseMenuLink;
-use PhpSpec\ObjectBehavior;
-use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\TranslatableInterface;
 
 class MenuLinkSpec extends ObjectBehavior
 {

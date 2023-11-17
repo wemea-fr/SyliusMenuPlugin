@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Helper;
 
-use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
-use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Webmozart\Assert\Assert;
+use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface;
 
 class MenuLinkPathResolverHelper implements MenuLinkPathResolverInterface
 {
-
     public function __construct(
         protected RouterInterface $router,
-        protected array $resourceRouteConfiguration
+        protected array $resourceRouteConfiguration,
     ) {
     }
 
@@ -48,6 +47,7 @@ class MenuLinkPathResolverHelper implements MenuLinkPathResolverInterface
         foreach ($routeConfiguration['parameters'] as $parameter => $method) {
             /**
              * @phpstan-ignore-next-line
+             *
              * @psalm-suppress MixedAssignment
              * @psalm-suppress MixedMethodCall
              * @psalm-suppress PossiblyInvalidMethodCall
@@ -57,6 +57,7 @@ class MenuLinkPathResolverHelper implements MenuLinkPathResolverInterface
 
         /** @var string $route */
         $route = $routeConfiguration['route'];
+
         return $this->router->generate(
             $route,
             $routeParameters,

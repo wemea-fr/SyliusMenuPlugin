@@ -6,8 +6,6 @@ namespace Tests\Wemea\SyliusMenuPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
-use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
-use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
 use FriendsOfBehat\PageObjectExtension\Page\SymfonyPageInterface;
 use Sylius\Behat\Service\Resolver\CurrentPageResolverInterface;
 use Sylius\Behat\Service\SharedStorageInterface;
@@ -19,6 +17,8 @@ use Tests\Wemea\SyliusMenuPlugin\Behat\Page\Admin\MenuItem\CreatePageInterface;
 use Tests\Wemea\SyliusMenuPlugin\Behat\Page\Admin\MenuItem\IndexPageInterface;
 use Tests\Wemea\SyliusMenuPlugin\Behat\Page\Admin\MenuItem\UpdatePageInterface;
 use Webmozart\Assert\Assert;
+use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
 
 class MenuItemContext implements Context
 {

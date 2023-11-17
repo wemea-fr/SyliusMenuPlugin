@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Wemea\SyliusMenuPlugin\Form\Type;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface;
 use Sylius\Bundle\ProductBundle\Form\Type\ProductAutocompleteChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
@@ -17,10 +16,10 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
+use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface;
 
 final class MenuLinkType extends AbstractResourceType
 {
-
     /**
      * @inheritdoc
      */
@@ -84,6 +83,7 @@ final class MenuLinkType extends AbstractResourceType
                     $link = $event->getData();
                     /**
                      * @phpstan-ignore-next-line
+                     *
                      * @psalm-suppress MixedArgument
                      */
                     $link->setLinkResource($type, $linkValue);

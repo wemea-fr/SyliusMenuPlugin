@@ -5,17 +5,15 @@ declare(strict_types=1);
 namespace Wemea\SyliusMenuPlugin\Factory;
 
 use Sylius\Component\Core\Model\ChannelInterface;
-use Wemea\SyliusMenuPlugin\Model\MenuInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
+use Wemea\SyliusMenuPlugin\Model\MenuInterface;
 
 class MenuFactory implements MenuFactoryInterface
 {
-
     public function __construct(
-        protected FactoryInterface $decoratedFactory
+        protected FactoryInterface $decoratedFactory,
     ) {
     }
-
 
     /** @psalm-return MenuInterface */
     public function createNew(): MenuInterface

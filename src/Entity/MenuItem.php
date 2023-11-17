@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Entity;
 
-use Wemea\SyliusMenuPlugin\Model\MenuItem as BaseMenuItem;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
+use Wemea\SyliusMenuPlugin\Model\MenuItem as BaseMenuItem;
 
 class MenuItem extends BaseMenuItem implements MenuItemInterface
 {

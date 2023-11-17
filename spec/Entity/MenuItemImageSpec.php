@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace spec\Wemea\SyliusMenuPlugin\Entity;
 
-use Wemea\SyliusMenuPlugin\Entity\MenuItemImage;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\Image;
 use Sylius\Component\Core\Model\ImageInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuItemImage;
 
 class MenuItemImageSpec extends ObjectBehavior
 {

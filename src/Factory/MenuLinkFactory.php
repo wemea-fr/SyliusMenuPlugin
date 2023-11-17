@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Factory;
 
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use Wemea\SyliusMenuPlugin\Model\MenuItemInterface;
 use Wemea\SyliusMenuPlugin\Model\MenuLinkInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class MenuLinkFactory implements MenuLinkFactoryInterface
 {
     public function __construct(
-        private FactoryInterface $decoratedFactory
+        private FactoryInterface $decoratedFactory,
     ) {
     }
-
 
     /** @psalm-return MenuLinkInterface */
     public function createNew(): MenuLinkInterface

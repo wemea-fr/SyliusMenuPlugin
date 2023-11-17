@@ -4,23 +4,18 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Form\Type;
 
-use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
-use Wemea\SyliusMenuPlugin\Factory\MenuLinkFactoryInterface;
-use Wemea\SyliusMenuPlugin\Model\MenuLinkInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\ResourceTranslationsType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
+use Wemea\SyliusMenuPlugin\Factory\MenuLinkFactoryInterface;
 
 class MenuItemType extends AbstractResourceType
 {
-
     /**
-     * @param string $dataClass
-     * @param string $linkClass
-     * @param MenuLinkFactoryInterface $menuLinkFactory
      * @param string[] $validationGroups
      */
     public function __construct(

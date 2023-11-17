@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Repository;
 
-use Wemea\SyliusMenuPlugin\Model\MenuInterface;
 use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Wemea\SyliusMenuPlugin\Model\MenuInterface;
 
 interface MenuRepositoryInterface extends RepositoryInterface
 {

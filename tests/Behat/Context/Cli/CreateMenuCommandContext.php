@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Tests\Wemea\SyliusMenuPlugin\Behat\Context\Cli;
 
+use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Routing\RouterInterface;
+use Webmozart\Assert\Assert;
 use Wemea\SyliusMenuPlugin\Command\CreateMenuCommand;
 use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
 use Wemea\SyliusMenuPlugin\Helper\CreateMenuHelperInterface;
 use Wemea\SyliusMenuPlugin\Repository\MenuRepositoryInterface;
-use Symfony\Component\HttpKernel\KernelInterface;
-use Symfony\Component\Routing\RouterInterface;
-use Webmozart\Assert\Assert;
 
 class CreateMenuCommandContext extends AbstractCliContext
 {

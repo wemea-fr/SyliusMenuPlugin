@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Wemea\SyliusMenuPlugin\Repository;
 
 use Doctrine\ORM\QueryBuilder;
-use Wemea\SyliusMenuPlugin\Model\MenuItemInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Wemea\SyliusMenuPlugin\Model\MenuItemInterface;
 
 interface MenuItemRepositoryInterface extends RepositoryInterface
 {

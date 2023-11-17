@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Wemea\SyliusMenuPlugin\Fixture;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Wemea\SyliusMenuPlugin\Model\MenuItem;
-use Wemea\SyliusMenuPlugin\Model\VisibilityTraitInterface;
 use Faker\Factory;
 use Faker\Generator;
 use Sylius\Bundle\CoreBundle\Fixture\AbstractResourceFixture;
@@ -14,18 +12,19 @@ use Sylius\Bundle\CoreBundle\Fixture\Factory\ExampleFactoryInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Wemea\SyliusMenuPlugin\Model\MenuItem;
+use Wemea\SyliusMenuPlugin\Model\VisibilityTraitInterface;
 
 final class MenuFixture extends AbstractResourceFixture
 {
-
     /** @var Generator */
     protected $faker;
 
     public function __construct(
         EntityManagerInterface $objectManager,
         ExampleFactoryInterface $exampleFactory,
-        protected string $defaultLocale)
-    {
+        protected string $defaultLocale,
+    ) {
         parent::__construct($objectManager, $exampleFactory);
         $this->faker = Factory::create();
     }

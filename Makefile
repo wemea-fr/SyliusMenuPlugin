@@ -83,13 +83,32 @@ integration: init phpunit-ci behat-ci
 ##-----------------------------------------------------------------
 .PHONY: static phpstan psalm
 
-static: install phpspec-ci phpstan psalm ## Run static analyses
+static: install phpspec-ci phpstan psalm code-style validate normalize ## Run static analyses
 
 phpstan: ## Run PHPStan analysis
 	vendor/bin/phpstan analyse
 
 psalm: ## Run Psalm analysis
 	vendor/bin/psalm
+
+validate: ## Validate composer.json
+	composer validate --ansi --strict
+
+normalize: ## Composer normalize
+	composer normalize --dry-run --no-update-lock --no-check-lock
+
+normalize-fix: ## Composer normalize
+	composer normalize --no-update-lock --no-check-lock
+
+lint: ## Run Lint task
+	tests/Application/bin/console lint:twig templates tests/Application/templates
+	tests/Application/bin/console lint:yaml config tests/Application/config
+
+code-style: ## Run code style analysis
+	vendor/bin/ecs check src spec features tests/Behat
+
+code-style-fix: ## Run code style analysis
+	vendor/bin/ecs check src spec features tests/Behat --fix
 
 ##
 ## Utilities

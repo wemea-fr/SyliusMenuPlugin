@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Tests\Wemea\SyliusMenuPlugin\Behat\Context\Transform;
 
 use Behat\Behat\Context\Context;
-use Wemea\SyliusMenuPlugin\Repository\MenuRepositoryInterface;
 use Webmozart\Assert\Assert;
+use Wemea\SyliusMenuPlugin\Repository\MenuRepositoryInterface;
 
 class MenuContext implements Context
 {

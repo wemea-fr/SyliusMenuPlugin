@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace spec\Wemea\SyliusMenuPlugin\Entity;
 
+use PhpSpec\ObjectBehavior;
+use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\TranslatableInterface;
 use Wemea\SyliusMenuPlugin\Entity\Menu;
 use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
 use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
 use Wemea\SyliusMenuPlugin\Model\Menu as BaseMenu;
 use Wemea\SyliusMenuPlugin\Model\MenuInterface as BaseMenuInterface;
-use PhpSpec\ObjectBehavior;
-use Sylius\Component\Resource\Model\ResourceInterface;
-use Sylius\Component\Resource\Model\TranslatableInterface;
 
 class MenuSpec extends ObjectBehavior
 {

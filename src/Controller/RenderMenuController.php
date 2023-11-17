@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Controller;
 
-use Wemea\SyliusMenuPlugin\Model\VisibilityTraitInterface;
-use Wemea\SyliusMenuPlugin\Repository\MenuRepositoryInterface;
 use Sylius\Component\Core\Context\ShopperContextInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Twig\Environment;
+use Wemea\SyliusMenuPlugin\Model\VisibilityTraitInterface;
+use Wemea\SyliusMenuPlugin\Repository\MenuRepositoryInterface;
 
 final class RenderMenuController
 {

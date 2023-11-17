@@ -48,6 +48,7 @@ class MenuLink implements MenuLinkInterface
      * To add new type make : array_merge(
      *                              parent::getLinkProperties(),
      *                             ['your_property']);
+     *
      * @return string[]
      */
     public static function getLinkProperties(): array
@@ -88,6 +89,7 @@ class MenuLink implements MenuLinkInterface
 
     /**
      * @psalm-suppress MixedInferredReturnType
+     *
      * @return string|object|null
      */
     public function getLinkResource()
@@ -98,6 +100,7 @@ class MenuLink implements MenuLinkInterface
         }
         /**
          * @phpstan-ignore-next-line
+         *
          * @psalm-suppress MixedReturnStatement
          */
         return $this->$type;

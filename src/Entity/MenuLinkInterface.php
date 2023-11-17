@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Entity;
 
-use Wemea\SyliusMenuPlugin\Model\MenuLinkInterface as BaseMenuLinkInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslatableInterface;
+use Wemea\SyliusMenuPlugin\Model\MenuLinkInterface as BaseMenuLinkInterface;
 
 interface MenuLinkInterface extends BaseMenuLinkInterface, ResourceInterface, TranslatableInterface
 {

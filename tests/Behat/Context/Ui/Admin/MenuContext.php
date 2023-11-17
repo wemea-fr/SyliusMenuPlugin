@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Tests\Wemea\SyliusMenuPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
-use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
 use Sylius\Component\Locale\Converter\LocaleConverterInterface;
 use Tests\Wemea\SyliusMenuPlugin\Behat\Page\Admin\Menu\IndexPageInterface;
 use Tests\Wemea\SyliusMenuPlugin\Behat\Page\Admin\Menu\UpdatePageInterface;
 use Webmozart\Assert\Assert;
+use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
 
 class MenuContext implements Context
 {

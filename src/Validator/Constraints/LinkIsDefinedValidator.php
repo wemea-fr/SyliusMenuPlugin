@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace Wemea\SyliusMenuPlugin\Validator\Constraints;
 
 use Doctrine\Common\Collections\Collection;
-use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface;
-use Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslationInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Exception\UnexpectedValueException;
+use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslationInterface;
 
 class LinkIsDefinedValidator extends ConstraintValidator
 {
-
     /**
      * @phpstan-ignore-next-line
+     *
      * @psalm-suppress MissingParamType
      */
     public function validate($value, Constraint $constraint): void
@@ -65,6 +65,7 @@ class LinkIsDefinedValidator extends ConstraintValidator
     {
         /**
          * @phpstan-ignore-next-line
+         *
          * @psalm-suppress PossiblyNullArgument
          */
         $this->context->buildViolation($message)

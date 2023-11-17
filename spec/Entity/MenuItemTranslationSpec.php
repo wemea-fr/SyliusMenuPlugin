@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace spec\Wemea\SyliusMenuPlugin\Entity;
 
-use Wemea\SyliusMenuPlugin\Entity\MenuItemTranslation;
-use Wemea\SyliusMenuPlugin\Entity\MenuItemTranslationInterface;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 use Sylius\Component\Resource\Model\TranslationInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuItemTranslation;
+use Wemea\SyliusMenuPlugin\Entity\MenuItemTranslationInterface;
 
 class MenuItemTranslationSpec extends ObjectBehavior
 {

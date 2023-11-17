@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Wemea\SyliusMenuPlugin\Helper;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
-use Wemea\SyliusMenuPlugin\Factory\MenuFactoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
+use Wemea\SyliusMenuPlugin\Factory\MenuFactoryInterface;
 
 class CreateMenuHelper implements CreateMenuHelperInterface
 {
-
     /** @var class-string */
     protected $channelClassName;
 

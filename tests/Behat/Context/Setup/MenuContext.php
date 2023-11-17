@@ -6,12 +6,11 @@ namespace Tests\Wemea\SyliusMenuPlugin\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use Doctrine\ORM\EntityManagerInterface;
-use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
-use Wemea\SyliusMenuPlugin\Model\VisibilityTraitInterface;
-use Proxies\__CG__\Wemea\SyliusMenuPlugin\Entity\Menu;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
+use Wemea\SyliusMenuPlugin\Model\VisibilityTraitInterface;
 
 class MenuContext implements Context
 {

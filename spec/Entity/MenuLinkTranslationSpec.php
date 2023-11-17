@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace spec\Wemea\SyliusMenuPlugin\Entity;
 
-use Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslation;
-use Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslationInterface;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Resource\Model\AbstractTranslation;
 use Sylius\Component\Resource\Model\ResourceInterface;
 use Sylius\Component\Resource\Model\TranslationInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslation;
+use Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslationInterface;
 
 class MenuLinkTranslationSpec extends ObjectBehavior
 {

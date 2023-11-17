@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace spec\Wemea\SyliusMenuPlugin\Model;
 
+use PhpSpec\ObjectBehavior;
 use Wemea\SyliusMenuPlugin\Model\MenuInterface;
 use Wemea\SyliusMenuPlugin\Model\MenuItem;
 use Wemea\SyliusMenuPlugin\Model\MenuItemInterface;
 use Wemea\SyliusMenuPlugin\Model\MenuLinkInterface;
-use PhpSpec\ObjectBehavior;
 
 class MenuItemSpec extends ObjectBehavior
 {

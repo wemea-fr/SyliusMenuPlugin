@@ -8,12 +8,6 @@ use Behat\Behat\Context\Context;
 use Behat\Mink\Element\NodeElement;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
-use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
-use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface as MenuLinkInterfaceEntity;
-use Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslationInterface;
-use Wemea\SyliusMenuPlugin\Factory\MenuItemFactoryInterface;
-use Wemea\SyliusMenuPlugin\Model\MenuInterface;
-use Wemea\SyliusMenuPlugin\Model\MenuLinkInterface;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Uploader\ImageUploaderInterface;
@@ -23,6 +17,12 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Taxonomy\Model\TaxonInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface as MenuLinkInterfaceEntity;
+use Wemea\SyliusMenuPlugin\Entity\MenuLinkTranslationInterface;
+use Wemea\SyliusMenuPlugin\Factory\MenuItemFactoryInterface;
+use Wemea\SyliusMenuPlugin\Model\MenuInterface;
+use Wemea\SyliusMenuPlugin\Model\MenuLinkInterface;
 
 class MenuItemContext implements Context
 {

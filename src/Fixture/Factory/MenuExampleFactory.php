@@ -5,13 +5,6 @@ declare(strict_types=1);
 namespace Wemea\SyliusMenuPlugin\Fixture\Factory;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
-use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
-use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface;
-use Wemea\SyliusMenuPlugin\Factory\MenuFactoryInterface;
-use Wemea\SyliusMenuPlugin\Factory\MenuItemFactoryInterface;
-use Wemea\SyliusMenuPlugin\Factory\MenuLinkFactoryInterface;
-use Wemea\SyliusMenuPlugin\Model\VisibilityTraitInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\AbstractExampleFactory;
 use Sylius\Bundle\CoreBundle\Fixture\OptionsResolver\LazyOption;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
@@ -22,6 +15,13 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Webmozart\Assert\Assert;
+use Wemea\SyliusMenuPlugin\Entity\MenuInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuItemInterface;
+use Wemea\SyliusMenuPlugin\Entity\MenuLinkInterface;
+use Wemea\SyliusMenuPlugin\Factory\MenuFactoryInterface;
+use Wemea\SyliusMenuPlugin\Factory\MenuItemFactoryInterface;
+use Wemea\SyliusMenuPlugin\Factory\MenuLinkFactoryInterface;
+use Wemea\SyliusMenuPlugin\Model\VisibilityTraitInterface;
 
 class MenuExampleFactory extends AbstractExampleFactory
 {

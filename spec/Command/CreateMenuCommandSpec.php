@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace spec\Wemea\SyliusMenuPlugin\Command;
 
+use PhpSpec\ObjectBehavior;
+use Symfony\Component\Routing\RouterInterface;
 use Wemea\SyliusMenuPlugin\Command\CreateMenuCommand;
 use Wemea\SyliusMenuPlugin\Helper\CreateMenuHelperInterface;
 use Wemea\SyliusMenuPlugin\Repository\MenuRepositoryInterface;
-use PhpSpec\ObjectBehavior;
-use Symfony\Component\Routing\RouterInterface;
 
 class CreateMenuCommandSpec extends ObjectBehavior
 {

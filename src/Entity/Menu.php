@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Entity;
 
-use Wemea\SyliusMenuPlugin\Model\Menu as BaseMenu;
 use Sylius\Component\Resource\Model\TranslatableTrait;
+use Wemea\SyliusMenuPlugin\Model\Menu as BaseMenu;
 
 class Menu extends BaseMenu implements MenuInterface
 {
