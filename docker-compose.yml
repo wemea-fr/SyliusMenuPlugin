@@ -21,6 +21,8 @@ services:
         platform: linux/amd64
         environment:
             MYSQL_ROOT_PASSWORD: mysql
+        volumes:
+            - mysql-data:/var/lib/mysql:rw
         ports:
             - ${MYSQL_PORT:-3306}:3306
         networks:
@@ -33,11 +35,13 @@ services:
         environment:
             PMA_HOST: mysql
             PMA_PORT: 3306
-        restart: always
         ports:
             - 8082:80
         networks:
             - sylius
+
+volumes:
+    mysql-data:
 
 networks:
     sylius:
