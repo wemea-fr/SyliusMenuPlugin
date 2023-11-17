@@ -11,6 +11,7 @@ services:
             - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf:delegated
         ports:
             - 80:80
+            - 81:81
         depends_on:
             - mysql
         networks:
@@ -37,6 +38,16 @@ services:
             PMA_PORT: 3306
         ports:
             - 8082:80
+        networks:
+            - sylius
+
+    chrome:
+        # v117 no more allow to access app through http (automatic redirection to https)
+        # See https://stackoverflow.com/questions/73875589/disable-website-redirection-to-https-on-chrome
+        image: zenika/alpine-chrome:115
+        command: [ "chromium-browser" , "--headless", "--disable-gpu", "--no-sandbox", "--window-size=1920,1080", "--remote-debugging-address=0.0.0.0", "--remote-debugging-port=9222"]
+        ports:
+            - "9222:9222"
         networks:
             - sylius
 

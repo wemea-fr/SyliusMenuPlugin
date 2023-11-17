@@ -53,3 +53,20 @@ default:
         FriendsOfBehat\SuiteSettingsExtension:
             paths:
                 - "features"
+
+docker:
+    extensions:
+        Behat\MinkExtension:
+            files_path: "%paths.base%/vendor/sylius/sylius/src/Sylius/Behat/Resources/fixtures/"
+            base_url: "http://app:81/"
+            default_session: symfony
+            javascript_session: chrome_headless
+            sessions:
+                symfony:
+                    symfony: ~
+                chrome_headless:
+                    chrome:
+                        api_url: http://chrome:9222
+                        validate_certificate: false
+                        socket_timeout: 60
+            show_auto: false

@@ -37,10 +37,14 @@ backend: ## Prepare Backend
 	tests/Application/bin/console sylius:install --no-interaction
 	tests/Application/bin/console doctrine:database:create --if-not-exists -vvv
 	tests/Application/bin/console doctrine:schema:update --complete --force --no-interaction -vvv
+	tests/Application/bin/console cache:clear --env=test
 	tests/Application/bin/console doctrine:database:create --env=test --if-not-exists -vvv
 	tests/Application/bin/console doctrine:schema:update --env=test --complete --force --no-interaction -vvv
 	tests/Application/bin/console sylius:fixtures:load --no-interaction
 	chmod -Rf 777 tests/Application/public
+	chmod -Rf 777 tests/Application/var
+	mkdir -p tests/Application/var/cache/test/sessions
+	chmod -Rf 777 tests/Application/var/cache/test/sessions
 
 frontend: ## Prepare Frontend
 	tests/Application/bin/console assets:install tests/Application/public
@@ -55,28 +59,31 @@ frontend: ## Prepare Frontend
 phpunit: ## Run unit tests
 	vendor/bin/phpunit --colors=always $(call parse_cmd_args)
 
+phpspec-ci: ## Run phpspec tests
+	vendor/bin/phpspec run --ansi --no-interaction -f progress
+
 phpspec: ## Run phpspec tests
 	vendor/bin/phpspec run --ansi --no-interaction -f progress $(call parse_cmd_args)
 
-behat: ## Run functional tests
-	APP_ENV=test vendor/bin/behat --colors --strict --no-interaction -vvv -f progress $(call parse_cmd_args)
+behat-ci: ## Run functional tests
+	APP_ENV=test vendor/bin/behat --profile docker --colors --strict --no-interaction -vvv -f progress
 
 behat-js: ## Run only functional tests with Javascript support
-	APP_ENV=test vendor/bin/behat --colors --strict --no-interaction -vvv -f progress --tags=@javascript $(call parse_cmd_args)
+	APP_ENV=test vendor/bin/behat --profile docker  --colors --strict --no-interaction -vvv -f progress --tags=@javascript $(call parse_cmd_args)
 
 behat-no-js: ## Run only functional tests without Javascript support
-	APP_ENV=test vendor/bin/behat --colors --strict --no-interaction -vvv -f progress --tags=~@javascript $(call parse_cmd_args)
+	APP_ENV=test vendor/bin/behat --profile docker --colors --strict --no-interaction -vvv -f progress --tags=~@javascript $(call parse_cmd_args)
 
-ci: init phpstan psalm phpunit phpspec behat
+ci: init phpstan psalm phpunit-ci phpspec-ci behat-ci
 
-integration: init phpunit behat
+integration: init phpunit-ci behat-ci
 
 ##
 ## QA
 ##-----------------------------------------------------------------
 .PHONY: static phpstan psalm
 
-static: install phpspec phpstan psalm ## Run static analyses
+static: install phpspec-ci phpstan psalm ## Run static analyses
 
 phpstan: ## Run PHPStan analysis
 	vendor/bin/phpstan analyse
