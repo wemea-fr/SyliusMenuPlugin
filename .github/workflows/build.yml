@@ -162,11 +162,11 @@ jobs:
                 
             -
                 name: Check twig linting
-                run: (cd tests/Application && bin/console lint:twig templates tests/Application/templates)
+                run: tests/Application/bin/console lint:twig templates tests/Application/templates
 
             -
                 name: Check yaml linting
-                run: (cd tests/Application && bin/console lint:yaml config tests/Application/config)
+                run: tests/Application/bin/console lint:yaml config tests/Application/config
 
             -
                 name: Check code style
