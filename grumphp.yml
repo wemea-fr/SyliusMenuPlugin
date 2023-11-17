@@ -1,0 +1,20 @@
+grumphp:
+    ascii:
+        failed: ~
+        succeeded: ~
+    tasks:
+        phplint:
+            exclude: [vendor/*]
+        yamllint: 
+            whitelist_patterns:
+                - /^config\/(.*)/
+                - /^tests\/Application\/config\/(.*)/
+#        twiglint: ~
+#        phpstan:
+#            configuration: phpstan.neon
+        ecs: 
+            config: ecs.php
+            paths: [src, spec, features, tests/Behat]
+        composer_normalize:
+            no_check_lock: true
+            no_update_lock: true
