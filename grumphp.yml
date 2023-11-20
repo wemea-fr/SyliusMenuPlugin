@@ -9,14 +9,25 @@ grumphp:
             whitelist_patterns:
                 - /^config\/(.*)/
                 - /^tests\/Application\/config\/(.*)/
-#        twiglint: ~
 #        phpstan:
+#            level: ~
 #            configuration: phpstan.neon
         ecs: 
             config: ecs.php
             paths: [src, spec, features, tests/Behat]
+        twigcs:
+            exclude: ['vendor']
+            severity: error
         phpcsfixer: 
             config: .php-cs-fixer.dist.php
         composer_normalize:
             no_check_lock: true
             no_update_lock: true
+        git_blacklist:
+            keywords:
+                - 'var_dump'
+                - 'dump\\('
+                - 'print_r'
+                - 'die\\('
+                - 'console\\.'
+            triggered_by: [php, twig, js]
