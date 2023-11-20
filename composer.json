@@ -71,10 +71,10 @@
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": false,
-            "phpstan/extension-installer": true,
-            "symfony/flex": true,
             "ergebnis/composer-normalize": true,
-            "phpro/grumphp": true
+            "phpro/grumphp": true,
+            "phpstan/extension-installer": true,
+            "symfony/flex": true
         },
         "sort-packages": true
     },
