@@ -23,6 +23,9 @@ stop: ## Start containers
 connect: ## Connect to app container to run command manually
 	docker-compose exec app sh
 
+grumphp: ## Run manually the Git pre-commit hook
+	vendor/bin/grumphp  run
+
 ##
 ## Install
 ##-----------------------------------------------------------------
@@ -83,7 +86,7 @@ integration: init phpunit-ci behat-ci
 ##-----------------------------------------------------------------
 .PHONY: static phpstan psalm
 
-static: install phpspec-ci phpstan psalm code-style validate normalize ## Run static analyses
+static: install phpspec-ci lint phpstan psalm code-style validate normalize ## Run static analyses
 
 phpstan: ## Run PHPStan analysis
 	vendor/bin/phpstan analyse
