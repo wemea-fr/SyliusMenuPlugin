@@ -2,11 +2,11 @@
 
 {% set menu = resource.menu %}
 {% set breadcrumbs = [
-    { label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard') },
-    { label: 'wemea_sylius_menu.ui.menu'|trans, url: path('wemea_sylius_menu_admin_menu_index') },
-    { label: menu.code, url: path('wemea_sylius_menu_admin_menu_update', {'id': menu.id} ) },
-    { label: 'wemea_sylius_menu.ui.menu_items'|trans, url: path('wemea_sylius_menu_admin_menu_item_index', {'menuId': menu.id} )  },
-    { label: 'sylius.ui.new'|trans }
+    {label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard')},
+    {label: 'wemea_sylius_menu.ui.menu'|trans, url: path('wemea_sylius_menu_admin_menu_index')},
+    {label: menu.code, url: path('wemea_sylius_menu_admin_menu_update', {'id': menu.id})},
+    {label: 'wemea_sylius_menu.ui.menu_items'|trans, url: path('wemea_sylius_menu_admin_menu_item_index', {'menuId': menu.id})},
+    {label: 'sylius.ui.new'|trans}
 ]
 %}
 

@@ -10,7 +10,7 @@
     {{ form_macro.customChoiceWidget(form.type) }}
 
     <div id="wemea_sylius_menu_link_selector">
-        {% for property in form.vars.allowed_link_properties  %}
+        {% for property in form.vars.allowed_link_properties %}
             {{ form_macro.menuLinkProperty(form[property], type_error) }}
         {% endfor %}
     </div>

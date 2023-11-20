@@ -1,6 +1,6 @@
 {% block wemea_sylius_menu_menu_item_image_widget %}
 
-    {% set has_image = false  %}
+    {% set has_image = false %}
     {% if form.vars.value.path|default(null) is not null %}
         {% set has_image = true %}
     {% endif %}
@@ -17,7 +17,7 @@
         <div class="ui two column grid">
             <div class="column">
 
-                <img class="ui small bordered image {% if not has_image  %}hidden{% endif %}"
+                <img class="ui small bordered image {% if not has_image %}hidden{% endif %}"
                      id="wemea_sylius_menu_menu_item_image_preview"
                      src="{{ image_path }}"
                      alt="link icon" />
@@ -40,7 +40,7 @@
             <div class="column">
                 <label
                         for="{{ form.remove_image.vars.id }}"
-                        class="ui button red icon {% if not has_image  %}element hidden{% endif %}">
+                        class="ui button red icon {% if not has_image %}element hidden{% endif %}">
                     <i class="trash icon"></i>
                     {{ 'sylius.ui.delete_image'|trans }}
                 </label>

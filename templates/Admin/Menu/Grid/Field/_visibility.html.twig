@@ -1,6 +1,6 @@
 {% import '@SyliusUi/Macro/labels.html.twig' as label %}
 
-{% set current_class = options.vars.data_class|default('Wemea\\SyliusMenuPlugin\\Model\\VisibilityTraitInterface')  %}
-{% set current_option = constant(current_class ~ '::VISIBILITY_CODE')[data]  %}
+{% set current_class = options.vars.data_class|default('Wemea\\SyliusMenuPlugin\\Model\\VisibilityTraitInterface') %}
+{% set current_option = constant(current_class ~ '::VISIBILITY_CODE')[data] %}
 
 {{ label.default('wemea_sylius_menu.ui.visibility_label.' ~ current_option) }}

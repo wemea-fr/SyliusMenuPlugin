@@ -106,6 +106,7 @@ lint: ## Run Lint task
 
 code-style: ## Run code style analysis
 	vendor/bin/ecs check src spec features tests/Behat
+	vendor/bin/twigcs templates/
 	vendor/bin/php-cs-fixer check
 
 code-style-fix: ## Run code style analysis

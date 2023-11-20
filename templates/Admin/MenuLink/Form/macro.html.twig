@@ -11,14 +11,14 @@
 {% macro menuLinkProperty(form, type_error) %}
 
 {#    Definded custom and default templates#}
-    {% set customTemplate = '@WemeaSyliusMenuPlugin/Admin/MenuLink/Form/Fields/_' ~ form.vars.name ~ '.html.twig' %}
-    {% set defaultTemplate = '@WemeaSyliusMenuPlugin/Admin/MenuLink/Form/Fields/_default.html.twig' %}
+    {% set custom_template = '@WemeaSyliusMenuPlugin/Admin/MenuLink/Form/Fields/_' ~ form.vars.name ~ '.html.twig' %}
+    {% set default_template = '@WemeaSyliusMenuPlugin/Admin/MenuLink/Form/Fields/_default.html.twig' %}
 
 
     <div data-link-type="{{ form.vars.name }}"
          class="field {% if (type_error.is_error) and (type_error.property is same as(form.vars.name)) %} error {% endif %}"
     >
 {#        Load custom template. If not exist load default template#}
-        {% include [ customTemplate, defaultTemplate ] with { 'form': form} %}
+        {% include [custom_template, default_template] with {'form': form} %}
     </div>
 {% endmacro %}
