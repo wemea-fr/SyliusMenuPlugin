@@ -1,6 +1,6 @@
-[![License](https://badgen.net/github/license/wemea-fr/SyliusMenuPlugin)](https://github.com/wemea-fr/SyliusMenuPlugin/blob/main/LICENSE.txt)
+[![License](https://img.shields.io/packagist/l/wemea/sylius-menu-plugin.svg)](https://github.com/wemea-fr/SyliusMenuPlugin/blob/main/LICENSE.txt)
 [![CI - Build](https://github.com/wemea-fr/SyliusMenuPlugin/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/wemea-fr/SyliusMenuPlugin/actions/workflows/build.yml)
-[![Version](https://badgen.net/github/tag/wemea-fr/SyliusMenuPlugin?label=Version)](https://packagist.org/packages/wemea/sylius-menu-plugin)
+[![Version](https://img.shields.io/packagist/v/wemea/sylius-menu-plugin.svg)](https://packagist.org/packages/wemea/sylius-menu-plugin)
 [![Total Downloads](https://poser.pugx.org/wemea/sylius-menu-plugin/downloads)](https://packagist.org/packages/wemea/sylius-menu-plugin)
 
 <p align="center">
@@ -42,7 +42,6 @@
     2. [Change default route mapping](#change-default-resource-route-mapping)
     3. [Add Custom resource link](#add-new-link-type-to-another-resource)
 3. [Use menu fixtures](#use-menu-fixtures)
-4. [Plugin testing](#plugin-testing)
 
 ## Installation
 
