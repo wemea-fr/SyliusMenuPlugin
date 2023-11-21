@@ -1,7 +1,7 @@
-[![License](https://badgen.net/github/license/jbaeasycom/SyliusMenuPlugin)](https://github.com/jbaeasycom/SyliusMenuPlugin/blob/main/LICENSE.txt)
-[![CI - Build](https://github.com/jbaeasycom/SyliusMenuPlugin/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/jbaeasycom/SyliusMenuPlugin/actions/workflows/build.yml)
-[![Version](https://badgen.net/github/tag/jbaeasycom/SyliusMenuPlugin?label=Version)](https://packagist.org/packages/jbaeasycom/sylius-menu-plugin)
-[![Total Downloads](https://poser.pugx.org/jbaeasycom/sylius-menu-plugin/downloads)](https://packagist.org/packages/jbaeasycom/sylius-menu-plugin)
+[![License](https://badgen.net/github/license/wemea-fr/SyliusMenuPlugin)](https://github.com/wemea-fr/SyliusMenuPlugin/blob/main/LICENSE.txt)
+[![CI - Build](https://github.com/wemea-fr/SyliusMenuPlugin/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/wemea-fr/SyliusMenuPlugin/actions/workflows/build.yml)
+[![Version](https://badgen.net/github/tag/wemea-fr/SyliusMenuPlugin?label=Version)](https://packagist.org/packages/wemea-fr/sylius-menu-plugin)
+[![Total Downloads](https://poser.pugx.org/wemea-fr/sylius-menu-plugin/downloads)](https://packagist.org/packages/jbaeasycom/sylius-menu-plugin)
 
 <p align="center">
     <a href="https://www.wemea.fr" target="_blank">
