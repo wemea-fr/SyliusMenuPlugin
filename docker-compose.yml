@@ -1,6 +1,9 @@
 services:
     app:
-        image: sylius/standard:1.11-traditional-alpine
+        #image: sylius/standard:1.11-traditional-alpine
+        build:
+            context: .
+            dockerfile: Dockerfile
         environment:
             APP_ENV: "dev"
             DATABASE_URL: "mysql://root:mysql@mysql/sylius_%kernel.environment%?charset=utf8mb4"
