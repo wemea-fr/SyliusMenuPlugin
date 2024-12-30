@@ -9,6 +9,7 @@
     ],
     "require": {
         "php": "^8.1",
+        "cweagans/composer-patches": "^1.7",
         "sylius/mailer-bundle": "^1.8 || ^2.0@beta",
         "sylius/sylius": "^1.13",
         "symfony/webpack-encore-bundle": "^1.15"
@@ -75,13 +76,19 @@
             "ergebnis/composer-normalize": true,
             "phpro/grumphp": true,
             "phpstan/extension-installer": true,
-            "symfony/flex": true
+            "symfony/flex": true,
+            "cweagans/composer-patches": true
         },
         "sort-packages": true
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.12-dev"
+        },
+        "patches": {
+            "friends-of-behat/mink": {
+                "[PATCH] type method vars": "https://github.com/FriendsOfBehat/Mink/pull/8.patch"
+            }
         },
         "symfony": {
             "require": "^6.4"

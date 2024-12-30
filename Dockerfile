@@ -20,6 +20,7 @@ RUN apk update --no-cache && apk add --no-cache \
     make \
     nginx \
     yarn \
+    patch \
     php81 \
     php81-apcu \
     php81-calendar \
