@@ -72,12 +72,12 @@
     },
     "config": {
         "allow-plugins": {
+            "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": false,
             "ergebnis/composer-normalize": true,
             "phpro/grumphp": true,
             "phpstan/extension-installer": true,
-            "symfony/flex": true,
-            "cweagans/composer-patches": true
+            "symfony/flex": true
         },
         "sort-packages": true
     },
