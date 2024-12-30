@@ -30,7 +30,7 @@ class MenuLink extends BaseMenuLink implements MenuLinkInterface
 
     public function __construct()
     {
-        //empty constructor to avoid to call TranslatableTrait::__construct by default
+        $this->initializeTranslationsCollection();
     }
 
     public function getId(): ?int
