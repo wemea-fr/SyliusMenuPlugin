@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Wemea\SyliusMenuPlugin\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Wemea\SyliusMenuPlugin\Model\MenuLink as BaseMenuLink;
 
@@ -25,12 +27,12 @@ class MenuLink extends BaseMenuLink implements MenuLinkInterface
         __construct as protected initializeTranslationsCollection;
     }
 
-    /** @var int|null */
-    protected $id;
+    protected ?int $id = null;
 
     public function __construct()
     {
         $this->initializeTranslationsCollection();
+        $this->translations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -60,8 +62,15 @@ class MenuLink extends BaseMenuLink implements MenuLinkInterface
 
     public static function getLinkProperties(): array
     {
-        return array_merge(parent::getLinkProperties(), [
-            'translations',
-        ]);
+        return array_merge(
+            parent::getLinkProperties(),
+            ['translations'],
+        );
+    }
+
+    public function getTranslations(): Collection
+    {
+        /** @phpstan-ignore-next-line */
+        return $this->translations ?? new ArrayCollection();
     }
 }
