@@ -68,9 +68,13 @@ class MenuLink extends BaseMenuLink implements MenuLinkInterface
         );
     }
 
+    /** @psalm-suppress InvalidReturnType MismatchingDocblockReturnType */
     public function getTranslations(): Collection
     {
-        /** @phpstan-ignore-next-line */
-        return $this->translations ?? new ArrayCollection();
+        /**
+         * @phpstan-ignore-next-line
+         * @psalm-suppress InvalidReturnStatement
+         */
+        return $this->translations;
     }
 }
