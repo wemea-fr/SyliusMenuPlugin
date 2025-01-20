@@ -73,6 +73,7 @@ class MenuLink extends BaseMenuLink implements MenuLinkInterface
     {
         /**
          * @phpstan-ignore-next-line
+         *
          * @psalm-suppress InvalidReturnStatement
          */
         return $this->translations;
