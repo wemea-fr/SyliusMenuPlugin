@@ -54,7 +54,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Wemea\\SyliusMenuPlugin\\": "src/"
+            "Wemea\\SyliusMenuPlugin\\": "src/",
+            "Wemea\\SyliusMenuPlugin\\Migrations\\": "migrations/"
         }
     },
     "autoload-dev": {
