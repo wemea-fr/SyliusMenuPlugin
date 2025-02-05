@@ -31,13 +31,11 @@ final class Version20250120103659 extends AbstractMigration
         $this->addSql('ALTER TABLE wemea_menu_link RENAME INDEX idx_a8df94fbde13f470 TO IDX_7A717F01DE13F470');
         $this->addSql('ALTER TABLE wemea_menu_link_translation RENAME INDEX idx_4763cb6d2c2ac5d3 TO IDX_60ADBA262C2AC5D3');
         $this->addSql('ALTER TABLE wemea_menu_translation RENAME INDEX idx_4f6a05772c2ac5d3 TO IDX_B0ADDB442C2AC5D3');
-        $this->addSql('ALTER TABLE messenger_messages CHANGE created_at created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', CHANGE available_at available_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', CHANGE delivered_at delivered_at DATETIME DEFAULT NULL COMMENT \'(DC2Type:datetime_immutable)\'');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE messenger_messages CHANGE created_at created_at DATETIME NOT NULL, CHANGE available_at available_at DATETIME NOT NULL, CHANGE delivered_at delivered_at DATETIME DEFAULT NULL');
         $this->addSql('ALTER TABLE wemea_menu RENAME INDEX uniq_5621853e77153098 TO UNIQ_6AF2E5DF77153098');
         $this->addSql('ALTER TABLE wemea_menu_channels RENAME INDEX idx_93e1eeeaccd7e912 TO IDX_87D405F7CCD7E912');
         $this->addSql('ALTER TABLE wemea_menu_channels RENAME INDEX idx_93e1eeea72f5a1aa TO IDX_87D405F772F5A1AA');
