@@ -8,9 +8,10 @@
         "sylius-plugin"
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
+        "cweagans/composer-patches": "^1.7",
         "sylius/mailer-bundle": "^1.8 || ^2.0@beta",
-        "sylius/sylius": "^1.12",
+        "sylius/sylius": "^1.13",
         "symfony/webpack-encore-bundle": "^1.15"
     },
     "require-dev": {
@@ -41,13 +42,13 @@
         "phpunit/phpunit": "^9.5",
         "polishsymfonycommunity/symfony-mocker-container": "^1.0",
         "sylius-labs/coding-standard": "^4.2",
-        "symfony/browser-kit": "^5.4 || ^6.0",
-        "symfony/debug-bundle": "^5.4 || ^6.0",
-        "symfony/dotenv": "^5.4 || ^6.0",
+        "symfony/browser-kit": "^6.0",
+        "symfony/debug-bundle": "^6.0",
+        "symfony/dotenv": "^6.0",
         "symfony/flex": "^2.2.2",
-        "symfony/intl": "^5.4 || ^6.0",
-        "symfony/web-profiler-bundle": "^5.4 || ^6.0",
-        "vimeo/psalm": "5.16.0"
+        "symfony/intl": "^6.0",
+        "symfony/web-profiler-bundle": "^6.0",
+        "vimeo/psalm": "^5.16"
     },
     "conflict": {
         "symfony/framework-bundle": "6.2.8"
@@ -72,6 +73,7 @@
     },
     "config": {
         "allow-plugins": {
+            "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": false,
             "ergebnis/composer-normalize": true,
             "phpro/grumphp": true,
@@ -84,8 +86,13 @@
         "branch-alias": {
             "dev-master": "1.12-dev"
         },
+        "patches": {
+            "friends-of-behat/mink": {
+                "[PATCH] type method vars": "https://github.com/FriendsOfBehat/Mink/pull/8.patch"
+            }
+        },
         "symfony": {
-            "require": "^6.0"
+            "require": "^6.4"
         }
     },
     "scripts": {

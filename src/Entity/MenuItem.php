@@ -17,6 +17,7 @@ use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Wemea\SyliusMenuPlugin\Model\MenuItem as BaseMenuItem;
 
+/** @psalm-suppress PropertyNotSetInConstructor */
 class MenuItem extends BaseMenuItem implements MenuItemInterface
 {
     use TranslatableTrait {

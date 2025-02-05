@@ -107,6 +107,7 @@ class MenuLink implements MenuLinkInterface
         if (null === $type) {
             return null;
         }
+
         /**
          * @phpstan-ignore-next-line
          *

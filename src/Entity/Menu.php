@@ -16,6 +16,7 @@ namespace Wemea\SyliusMenuPlugin\Entity;
 use Sylius\Component\Resource\Model\TranslatableTrait;
 use Wemea\SyliusMenuPlugin\Model\Menu as BaseMenu;
 
+/** @psalm-suppress PropertyNotSetInConstructor */
 class Menu extends BaseMenu implements MenuInterface
 {
     use TranslatableTrait {

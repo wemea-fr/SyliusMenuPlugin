@@ -78,7 +78,7 @@ class MenuExampleFactory extends AbstractExampleFactory
 
     protected function configureOptions(OptionsResolver $resolver): void
     {
-        /** @psalm-suppress UnusedClosureParam */
+        /** @psalm-suppress InvalidArgument */
         $resolver
             ->setDefined('code')
             ->setAllowedTypes('code', 'string')
