@@ -4,8 +4,8 @@
 [![Total Downloads](https://poser.pugx.org/wemea/sylius-menu-plugin/downloads)](https://packagist.org/packages/wemea/sylius-menu-plugin)
 
 <p align="center">
-    <a href="https://www.wemea.fr" target="_blank">
-        <img src="doc/logo.png"/>
+    <a href="https://www.wemea.fr" target="_blank" width="50%">
+        <img src="doc/logo.png"/ style="max-width: 50%;">
     </a>
 </p>
 <h1 align="center">Sylius Menu Plugin</h1>

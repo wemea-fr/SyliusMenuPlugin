@@ -9,19 +9,19 @@ parse_cmd_args = $(filter-out $@,$(MAKECMDGOALS))
 .PHONY: start stop
 
 recreate: ## Recreate containers
-	docker-compose up -d --force-recreate --remove-orphans
+	docker compose up -d --force-recreate --remove-orphans
 
 clean: ## Remove containers
-	docker-compose down -v
+	docker compose down -v
 
 start: ## Start containers
-	docker-compose up -d
+	docker compose up -d
 
 stop: ## Start containers
-	docker-compose kill
+	docker compose kill
 
 connect: ## Connect to app container to run command manually
-	docker-compose exec app sh
+	docker compose exec app sh
 
 grumphp: ## Run manually the Git pre-commit hook
 	vendor/bin/grumphp  run
